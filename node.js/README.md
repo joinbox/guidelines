@@ -2,7 +2,7 @@
 
 ## module & file structure
 
-this is the recommended file structure for all applications. you may add additional folders if you see fit for them, but please keep it clean.
+This is the recommended file structure for all applications. You may add additional folders if you see fit for them, but please keep it clean.
 
 	/lib/ 				-> appllication code
 	/test/ 				-> application tests
@@ -14,15 +14,15 @@ this is the recommended file structure for all applications. you may add additio
 	/.gitignore
 
 
-all file and foldernames must be written in camelCase, normally with the first letter in lowercase ( except for classes ).
+All file and foldernames must be written in camelCase, normally with the first letter in lowercase ( except for classes ).
 
 ## code structure
 
-You should implement the aplications & modules like it's done in the demo project [ee-webserver](https://github.com/eventEmitter/ee-webserver). It's very important that you use the modules recommended by joinbox. Classes must be implemented using the ee-class module. If you plan to use other modules & libraries you must contact joinbox in advance.	
+You should implement the aplications & modules like it's done in the demo project [ee-webserver](https://github.com/eventEmitter/ee-webserver). It's very important that you use the modules recommended by joinbox. Classes must be implemented using the ee-class module. If you plan to use other modules & libraries you must contact joinbox before you start using them.	
 
 ## recommended libraries
 
-Modules provided & approved by joinbox. Some of the libraries created by joinbox ( e*-* ) will have bugs or not all the required functionality. You may contribute code to the libraries ( all libraries listed below are opensource and MIT licenced ) or file bugreports so that we can fix it asap for you. 
+List of modules provided & approved by joinbox. Some of the libraries created by joinbox ( e*-* ) will have bugs or not all the required functionality. You may contribute code to the libraries ( all libraries listed below are opensource and MIT licenced ) or file bugreports so that we can fix it asap for you. if you provide code for these modules and you expect us to pay for it you have ask us prior to contributing.
 
 ### basic libraries
 
@@ -91,7 +91,7 @@ Modules provided & approved by joinbox. Some of the libraries created by joinbox
 
 ## documentation
 
-- All code must be commented inline so that a skilled third party is able to read the code easily
+- All code must be commented inline so that a skilled third party is able to read the code easily. keep it clean and simple.
 - Each application / module / library must have at least one README.md file which describes the api or usage for the current module. 
 - Advanced data structures & algorithms must be documented in the wiki of the repository
 - Documentation must be written in github flavoured markdown
@@ -99,12 +99,12 @@ Modules provided & approved by joinbox. Some of the libraries created by joinbox
 
 ## testing
 
-Modules / applications must have at least simple functional testing functionality. unit tests are welcome.
+Modules / applications must have at least simple functional testing functionality. Unit tests are welcome.
 
 ## contributing
 
-we will provide access to a private git repository where you must commit your work to.
+We will provide access to a private git repository where you must commit your work to.
 
 Before you start to code, the functionality and / or the API must be documented in the repositories README.md file. Joinbox must approve your architecture / api / functionality before you may start to implement it. We expect our freelancers to think about what we ask them to do and to improve our concepts.
 
-we expect you to commit all changes you made to the code base & docs every day you worked on the project.
+We expect you to commit all changes you made to the code base & docs every day you worked on the project.
