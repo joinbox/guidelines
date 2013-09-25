@@ -1,4 +1,4 @@
-# node.js coding guidelines
+# node.js coding guidelines for joinbox freelancers
 
 ## module & file structure
 
@@ -6,6 +6,7 @@ this is the recommended file structure for all applications. you may add additio
 
 	/lib/ 				-> appllication code
 	/test/ 				-> application tests
+	/docs/				-> docs
 	/index.js  			-> main entry point for the applciation, references normally a class from the lib directory
 	/test.js  			-> test execution
 	/README.md 			-> basic documentation
@@ -13,15 +14,15 @@ this is the recommended file structure for all applications. you may add additio
 	/.gitignore
 
 
-all file and foldernames are written in camelCase, normally with the first letter in lowercase ( except for classes ).
+all file and foldernames must be written in camelCase, normally with the first letter in lowercase ( except for classes ).
 
 ## code structure
 
-you should implement the aplications & modules like it's done in the demo project [ee-webserver](https://github.com/eventEmitter/ee-webserver). it's very important that you use the modules recommended by joinbox. Classes must be implemented using the ee-class module. If you plan to use other modules & libraries you must contact joinbox in advance.	
+You should implement the aplications & modules like it's done in the demo project [ee-webserver](https://github.com/eventEmitter/ee-webserver). It's very important that you use the modules recommended by joinbox. Classes must be implemented using the ee-class module. If you plan to use other modules & libraries you must contact joinbox in advance.	
 
 ## recommended libraries
 
-You should use the follwoing modules provided by joinbox:
+Modules provided & approved by joinbox. Some of the libraries created by joinbox ( e*-* ) will have bugs or not all the required functionality. You may contribute code to the libraries ( all libraries listed below are opensource and MIT licenced ) or file bugreports so that we can fix it asap for you. 
 
 ### basic libraries
 
@@ -87,17 +88,23 @@ You should use the follwoing modules provided by joinbox:
 - [ee-aws-v4-request](https://npmjs.org/package/ee-aws-v4-request) 				-> class for making requests to some of the aws services
 
 
-it is very important that you implement classes using the provided class implementation. you may extend from native node.js classes.
-
 
 ## documentation
 
-All code must be commented inline so that a skilled third party is able to read the code easily. each application / module / library must have at least one README.md file which describes the api or usage for the current module. if there is any complicated data structure / code / algorihtm it must be documented in the wiki of the repository. documentation must delivered in github flavoured markdown. the documentation must be always be written in english.
+- All code must be commented inline so that a skilled third party is able to read the code easily
+- Each application / module / library must have at least one README.md file which describes the api or usage for the current module. 
+- Advanced data structures & algorithms must be documented in the wiki of the repository
+- Documentation must be written in github flavoured markdown
+- The documentation must be written in english
 
 ## testing
 
-modules / applications must have at least simple functional testing code. unit tests are welcome.
+Modules / applications must have at least simple functional testing functionality. unit tests are welcome.
 
 ## contributing
 
-from the start of the project the work of each day must be commited to the repository
+we will provide access to a private git repository where you must commit your work to.
+
+Before you start to code, the functionality and / or the API must be documented in the repositories README.md file. Joinbox must approve your architecture / api / functionality before you may start to implement it. We expect our freelancers to think about what we ask them to do and to improve our concepts.
+
+we expect you to commit all changes you made to the code base & docs every day you worked on the project.
