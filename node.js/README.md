@@ -28,7 +28,7 @@ List of modules provided & approved by joinbox. Some of the libraries created by
 
 - [ee-class](https://npmjs.org/package/ee-class) 							-> js class implementation
 - [ee-event-emitter](https://npmjs.org/package/ee-event-emitter) 					-> event emitter implementation
-- [ee-types](https://npmjs.org/package/ee-types) 							-> type checking, dont us typeof
+- [ee-types](https://npmjs.org/package/ee-types) 							-> type checking, dont use typeof
 - [ee-log](https://npmjs.org/package/ee-log) 							-> simple & colorful console log replacement
 - [ee-waiter](https://npmjs.org/package/ee-waiter) 						-> control flow: parallel asynchronous job execution
 - [ee-project](https://npmjs.org/package/ee-project)  						-> determines the projects root path, loads a config.js if present, exports them
