@@ -18,11 +18,69 @@ All file and foldernames must be written in camelCase, normally with the first l
 
 ## code structure
 
-You should implement the aplications & modules like it's done in the demo project [ee-webserver](https://github.com/eventEmitter/ee-webserver). It's very important that you use the modules recommended by joinbox. Classes must be implemented using the ee-class module. If you plan to use other modules & libraries you must contact joinbox before you start using them.	
+You should implement the aplications & modules like it's done in the demo project [ee-webserver](https://github.com/eventEmitter/ee-webserver). It's very important that you use the modules recommended by joinbox. Classes must be implemented using the ee-class module. If you plan to use other modules & libraries you must contact joinbox before you start using them.
+
+you should format the code as described below:
+
+	var MyClass = new Class( {
+
+		  CONSTANT: 5
+		, variable: {}
+
+
+		// class constructor
+		, init: function( options ){
+
+		}
+
+
+		, myMethod: function( myArgument1, myArgument2 ){
+
+		}
+
+	} );
+
+
+	var myClassInstance = new MyClass();
+
+
+- variables must always be declared ( var x = ... )
+- variables must be declared at the start of the function
+- constants are alway UPPERCASE
+- strings must be enclosed in "duoble quotes"
+- variables start with a lowercase letter
+- Classes start with an uppercase letter
+- variable and class names must be written in camelCase
+- the opneing curly brace of a statement must be placed on the same line as the statement itself
+- you should create classes whenever possible
+- one class per file
+- import statements must always on the top of the file
+- never declare global variables
+- statments must alwas be terminated using a semicolon;
+
+
+## control flow
+
+*** NEVER USE A SYNCHRONOUS API! NEVER! ***
+
+You may either use events or callbacks for asynchronous processing. If you use callbacks argument 0 passed to the callback must be either null or an Error object. If you use events you must handle errors via the «error» event.
+
+You may never throw exceptions unless its a problem which gets handled at development time. Errors are always passed to callbacks or emitted via the error event.
+
+You must use the «ee-error» npm module for creating Error objects.
+
+	// import the library once per project
+	require( "ee-error" );
+
+	// you must use the setName property to set an unique error code on the error object.
+	// the code must be camelcase and start with an uppercase letter. 
+	var err = new Error( "some error description" ).setName( "SomeErrorException" );
+
 
 ## recommended libraries
 
 List of modules provided & approved by joinbox. Some of the libraries created by joinbox ( e*-* ) will have bugs or not all the required functionality. You may contribute code to the libraries ( all libraries listed below are opensource and MIT licenced ) or file bugreports so that we can fix it asap for you. if you provide code for these modules and you expect us to pay for it you have ask us prior to contributing.
+
 
 ### basic libraries
 
