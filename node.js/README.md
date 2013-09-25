@@ -4,7 +4,7 @@
 
 This is the recommended file structure for all applications. You may add additional folders if you see fit for them, but please keep it clean.
 
-	/lib/ 				-> appllication code
+	/lib/ 				-> application code
 	/test/ 				-> application tests
 	/docs/				-> docs
 	/index.js  			-> main entry point for the applciation, references normally a class from the lib directory
@@ -165,4 +165,4 @@ We will provide access to a private git repository where you must commit your wo
 
 Before you start to code, the functionality and / or the API must be documented in the repositories README.md file. Joinbox must approve your architecture / api / functionality before you may start to implement it. We expect our freelancers to think about what we ask them to do and to improve our concepts.
 
-We expect you to commit all changes you made to the code base & docs every day you worked on the project.
+We expect you to commit all changes you made to the codebase & docs every day you worked on the project.
