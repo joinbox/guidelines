@@ -92,7 +92,7 @@ it is very important that you implement classes using the provided class impleme
 
 ## documentation
 
-All code must be commented inline so that a skilled third party is able to read the codeeasily. each application / module / library must have at least one README.md file which describes the api or usage for the current module. if there is any complicated data structure / code / algorihtm it must be documented in the wiki of the repository. documentation must delivered in github flavoured markdown. the documentation must be always be written in english.
+All code must be commented inline so that a skilled third party is able to read the code easily. each application / module / library must have at least one README.md file which describes the api or usage for the current module. if there is any complicated data structure / code / algorihtm it must be documented in the wiki of the repository. documentation must delivered in github flavoured markdown. the documentation must be always be written in english.
 
 ## testing
 
