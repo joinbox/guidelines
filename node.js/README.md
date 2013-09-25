@@ -88,3 +88,16 @@ You should use the follwoing modules provided by joinbox:
 
 
 it is very important that you implement classes using the provided class implementation. you may extend from native node.js classes.
+
+
+## documentation
+
+All code must be commented inline so that a skilled third party is able easily to read the code. each application / module / library must have at least one README.md file which describes the api or usage for the current module. if there is any complicated data structure / code / algorihtm it must be documented in the wiki of the repository. documentation must delivered in github flavoured markdown.
+
+## testing
+
+modules / applications must have at least simple functional testing modules. unti tests are welcome.
+
+## contributing
+
+from the start of the project the work of each day must be commited to the repository
