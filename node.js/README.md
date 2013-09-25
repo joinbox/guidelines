@@ -13,12 +13,11 @@ this is the recommended file structure for all applications. you may add additio
 	/.gitignore
 
 
-all file and foldernames are written in camelcase, normally with the first letter in lowercase ( except for classes ).
+all file and foldernames are written in camelCase, normally with the first letter in lowercase ( except for classes ).
 
 ## code structure
 
-	
-
+you should implement the aplications & modules like it's done in the demo project [ee-webserver](https://github.com/eventEmitter/ee-webserver). it's very important that you use the modules recommended by joinbox. Classes must be implemented using the ee-class module. If you plan to use other modules & libraries you must contact joinbox in advance.	
 
 ## recommended libraries
 
@@ -36,7 +35,7 @@ You should use the follwoing modules provided by joinbox:
 - [ee-error](https://npmjs.org/package/ee-error) 							-> Extends the native error object with a setName & setDescription method
 
 
-### webservices
+### webservices & network
 
 - [ee-webservice](https://npmjs.org/package/ee-webservice) 					-> A framework for Webservices
 	- [em-api-restrictions](https://npmjs.org/package/em-api-restrictions) 			-> api restrictions middleware for ee-webservice ( apikey, rate limiting )
@@ -46,7 +45,7 @@ You should use the follwoing modules provided by joinbox:
 	- [em-webfiles](https://npmjs.org/package/em-webfiles) 					-> web files middleware for ee-webservice
 
 - [ee-formdata-reader](https://npmjs.org/package/ee-formdata-reader) 				-> reads formdata from a request
-
+- [request](https://npmjs.org/package/request) 							-> make http requests
 
 ### db access
 
