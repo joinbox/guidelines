@@ -1,4 +1,4 @@
-# node.js coding guidelines for joinbox freelancers
+# node.js coding guidelines for joinbox
 
 ## module & file structure
 
