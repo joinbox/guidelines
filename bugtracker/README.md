@@ -39,12 +39,12 @@ After your steps, precisely describe the observed result and the expected result
 
 - If you encounter a bug wich causes a part of the product not to be rendered as expected please include a screenshot of that part of the product. 
 - Don't include screenshots if they don't display / help identify the problem.
-- If any interactive part of the product fails / doesn work you should include all output of th developer console of your browser. See [getting Stack Traces](https://github.com/) ) 
+- If any interactive part of the product fails / doesn work you should include all output of th developer console of your browser. See [getting Stack Traces](https://github.com/joinbox/guidelines/tree/master/bugtracker/stackTraces.md) 
 
 
 ## Product Version
 
-You must always include the exact version of Browser / Operating System you were using when encountering the bug. See [Finding my Browser & OS version](https://github.com/) )
+You must always include the exact version of Browser / Operating System you were using when encountering the bug. See [Finding my Browser Version](https://github.com/joinbox/guidelines/tree/master/bugtracker/browserVersion.md) and [Finding my Operating System Version](https://github.com/joinbox/guidelines/tree/master/bugtracker/osVersion.md)
 
 - Bad: "Firefox / Linux"
 - Good: "Mozilla Firefox for Ubuntu canonical 1.0 / Ubuntu Saucy Salamander (development branch), 13.10"
@@ -52,4 +52,4 @@ You must always include the exact version of Browser / Operating System you were
 
 ## Assignment & Labels
 
-Please dont assign th ebug to anyone and don't add any labels to it. The Project Manager will triage th eBugs once a day. If it's urgent contact the Project Manager directly.
+Please don't assign the bug to anyone and don't add any labels to it. The Project Manager will triage the Bugs once a day. If it's urgent contact the Project Manager directly.
