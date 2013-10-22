@@ -26,7 +26,7 @@ Steps to reproduce are the most important part of any bug report. If a developer
 
 Describe your method of interacting with the Software in addition to the intent of each step.
 
-- Imprecise: "Navigate to the containing the event Darkside and press the «buy tickets button». ..."
+- Imprecise: "Navigate to the page containing the event Darkside and press the «buy tickets button». ..."
 - Precis: "Navigate to the page «http://events.ch/de/Electro-Electropop/Reitschule-Dachstock/Bern/Darkside/e-240076/», select 1 ticket and press the «buy tickets button». ..."
 
 After your steps, precisely describe the observed result and the expected result. Clearly separate facts (observations) from speculations.
@@ -52,4 +52,4 @@ You must always include the exact version of Browser / Operating System you were
 
 ## Assignment & Labels
 
-Please don't assign the bug to anyone and don't add any labels to it. The Project Manager will triage the Bugs once a day. If it's urgent contact the Project Manager directly.
+Please don't assign the bug to anyone and don't add any labels to it. The Project Manager will triage the Bugs regularly. If it's urgent contact the Project Manager directly.
