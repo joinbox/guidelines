@@ -49,7 +49,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
     ```javascript
     var foo = 1,
-            bar = foo;
+        bar = foo;
 
     bar = 9;
 
@@ -63,7 +63,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
     ```javascript
     var foo = [1, 2],
-            bar = foo;
+        bar = foo;
 
     bar[0] = 9;
 
