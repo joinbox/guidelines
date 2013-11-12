@@ -47,28 +47,28 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	+ `null`
 	+ `undefined`
 
-	
+	```javascript
 	var foo = 1,
 			bar = foo;
 
 	bar = 9;
 
 	console.log(foo, bar); // => 1, 9
-
+	```
 - **Complex**: When you access a complex type you work on a reference to its value
 
 	+ `object`
 	+ `array`
 	+ `function`
 
-	
+	```javascript
 	var foo = [1, 2],
 			bar = foo;
 
 	bar[0] = 9;
 
 	console.log(foo[0], bar[0]); // => 9, 9
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -76,17 +76,17 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - Use the literal syntax for object creation.
 
-	
+	```javascript
 	// bad
 	var item = new Object();
 
 	// good
 	var item = {};
-
+	```
 
 - Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys. It won't work in IE8. [More info](https://github.com/airbnb/javascript/issues/61)
 
-	
+	```javascript
 	// bad
 	var superman = {
 		default: { clark: 'kent' },
@@ -98,11 +98,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 		defaults: { clark: 'kent' },
 		hidden: true
 	};
-
+	```
 
 - Use readable synonyms in place of reserved words.
 
-	
+	```javascript
 	// bad
 	var superman = {
 		class: 'alien'
@@ -117,24 +117,24 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	var superman = {
 		type: 'alien'
 	};
-
+	```
 	**[[⬆]](#TOC)**
 
 ## <a name='arrays'>Arrays</a>
 
 - Use the literal syntax for array creation
 
-	
+	```javascript
 	// bad
 	var items = new Array();
 
 	// good
 	var items = [];
-
+	```
 
 - If you don't know array length use Array#push.
 
-	
+	```javascript
 	var someStack = [];
 
 
@@ -143,11 +143,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	someStack.push('abracadabra');
-
+	```
 
 - When you need to copy an array use Array#slice. [jsPerf](http://jsperf.com/converting-arguments-to-an-array/7)
 
-	
+	```javascript
 	var len = items.length,
 			itemsCopy = [],
 			i;
@@ -159,16 +159,16 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	itemsCopy = items.slice();
-
+	```
 
 - To convert an array-like object to an array, use Array#slice.
 
-	
+	```javascript
 	function trigger() {
 		var args = Array.prototype.slice.call(arguments);
 		...
 	}
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -177,7 +177,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - Use single quotes `''` for strings
 
-	
+	```javascript
 	// bad
 	var name = "Bob Parr";
 
@@ -189,12 +189,12 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	var fullName = 'Bob ' + this.lastName;
-
+	```
 
 - Strings longer than 80 characters should be written across multiple lines using string concatenation.
 - Note: If overused, long strings with concatenation could impact performance. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40)
 
-	
+	```javascript
 	// bad
 	var errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
 
@@ -214,11 +214,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 		'how Batman had anything to do ' +
 		'with this, you would get nowhere ' +
 		'fast.';
-
+	```
 
 - When programatically building up a string, use Array#join instead of string concatenation. Mostly for IE: [jsPerf](http://jsperf.com/string-vs-array-concat/2).
 
-	
+	```javascript
 	var items,
 			messages,
 			length,
@@ -258,7 +258,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 		return '<ul><li>' + items.join('</li><li>') + '</li></ul>';
 	}
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -267,7 +267,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - Function expressions:
 
-	
+	```javascript
 	// anonymous function expression
 	var anonymous = function() {
 		return true;
@@ -282,12 +282,12 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	(function() {
 		console.log('Welcome to the Internet. Please follow me.');
 	})();
-
+	```
 
 - Never declare a function in a non-function block (if, while, etc). Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently, which is bad news bears.
 - **Note:** ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement. [Read ECMA-262's note on this issue](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
 
-	
+	```javascript
 	// bad
 	if (currentUser) {
 		function test() {
@@ -302,11 +302,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 			console.log('Yup.');
 		};
 	}
-
+	```
 
 - Never name a parameter `arguments`, this will take precedence over the `arguments` object that is given to every function scope.
 
-	
+	```javascript
 	// bad
 	function nope(name, options, arguments) {
 		// ...stuff...
@@ -316,7 +316,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	function yup(name, options, args) {
 		// ...stuff...
 	}
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -326,7 +326,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - Use dot notation when accessing properties.
 
-	
+	```javascript
 	var luke = {
 		jedi: true,
 		age: 28
@@ -337,11 +337,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	var isJedi = luke.jedi;
-
+	```
 
 - Use subscript notation `[]` when accessing properties with a variable.
 
-	
+	```javascript
 	var luke = {
 		jedi: true,
 		age: 28
@@ -352,7 +352,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	}
 
 	var isJedi = getProp('jedi');
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -361,17 +361,17 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - Always use `var` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace. Captain Planet warned us of that.
 
-	
+	```javascript
 	// bad
 	superPower = new SuperPower();
 
 	// good
 	var superPower = new SuperPower();
-
+	```
 
 - Use one `var` declaration for multiple variables and declare each variable on a newline.
 
-	
+	```javascript
 	// bad
 	var items = getItems();
 	var goSportsTeam = true;
@@ -381,11 +381,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	var items = getItems(),
 			goSportsTeam = true,
 			dragonball = 'z';
-
+	```
 
 - Declare unassigned variables last. This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
 
-	
+	```javascript
 	// bad
 	var i, len, dragonball,
 			items = getItems(),
@@ -403,11 +403,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 			dragonball,
 			length,
 			i;
-
+	```
 
 - Assign variables at the top of their scope. This helps avoid issues with variable declaration and assignment hoisting related issues.
 
-	
+	```javascript
 	// bad
 	function() {
 		test();
@@ -461,7 +461,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 		return true;
 	}
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -498,7 +498,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - Anonymous function expressions hoist their variable name, but not the function assignment.
 
-	
+	```javascript
 	function example() {
 		console.log(anonymous); // => undefined
 
@@ -508,11 +508,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 			console.log('anonymous function expression');
 		};
 	}
-
+	```
 
 - Named function expressions hoist the variable name, not the function name or the function body.
 
-	
+	```javascript
 	function example() {
 		console.log(named); // => undefined
 
@@ -536,11 +536,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 			console.log('named');
 		}
 	}
-
+	```
 
 - Function declarations hoist their name and the function body.
 
-	
+	```javascript
 	function example() {
 		superPower(); // => Flying
 
@@ -548,7 +548,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 			console.log('Flying');
 		}
 	}
-
+	```
 
 - For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting) by [Ben Cherry](http://www.adequatelygood.com/)
 
@@ -568,16 +568,16 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	+ **Numbers** evaluate to **false** if **+0, -0, or NaN**, otherwise **true**
 	+ **Strings** evaluate to **false** if an empty string `''`, otherwise **true**
 
-	
+	```javascript
 	if ([0]) {
 		// true
 		// An array is an object, objects evaluate to true
 	}
-
+	```
 
 - Use shortcuts.
 
-	
+	```javascript
 	// bad
 	if (name !== '') {
 		// ...stuff...
@@ -597,7 +597,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	if (collection.length) {
 		// ...stuff...
 	}
-
+	```
 
 - For more information see [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll
 
@@ -608,7 +608,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - Use braces with all multi-line blocks.
 
-	
+	```javascript
 	// bad
 	if (test)
 		return false;
@@ -628,7 +628,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	function() {
 		return false;
 	}
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -637,7 +637,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - Use `/** ... */` for multiline comments. Include a description, specify types and values for all parameters and return values.
 
-	
+	```javascript
 	// bad
 	// make() returns a new element
 	// based on the passed in tag name
@@ -665,11 +665,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 		return element;
 	}
-
+	```
 
 - Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment.
 
-	
+	```javascript
 	// bad
 	var active = true;  // is current tab
 
@@ -695,13 +695,13 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 		return type;
 	}
-
+	```
 
 - Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME -- need to figure this out` or `TODO -- need to implement`.
 
 - Use `// FIXME:` to annotate problems
 
-	
+	```javascript
 	function Calculator() {
 
 		// FIXME: shouldn't use a global here
@@ -709,11 +709,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 		return this;
 	}
-
+	```
 
 - Use `// TODO:` to annotate solutions to problems
 
-	
+	```javascript
 	function Calculator() {
 
 		// TODO: total should be configurable by an options param
@@ -721,7 +721,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 		return this;
 	}
-
+```
 
 	**[[⬆]](#TOC)**
 
@@ -730,7 +730,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - Use soft tabs set to 2 spaces
 
-	
+	```javascript
 	// bad
 	function() {
 	∙∙∙∙var name;
@@ -745,10 +745,10 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	function() {
 	∙∙var name;
 	}
-
+	```
 - Place 1 space before the leading brace.
 
-	
+	```javascript
 	// bad
 	function test(){
 		console.log('test');
@@ -770,27 +770,27 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 		age: '1 year',
 		breed: 'Bernese Mountain Dog'
 	});
-
+	```
 - Place an empty newline at the end of the file.
 
-	
+	```javascript
 	// bad
 	(function(global) {
 		// ...stuff...
 	})(this);
+	```
 
-
-	
+	```javascript
 	// good
 	(function(global) {
 		// ...stuff...
 	})(this);
 
-
+	```
 
 - Use indentation when making long method chains.
 
-	
+	```javascript
 	// bad
 	$('#items').find('.selected').highlight().end().find('.open').updateCount();
 
@@ -817,7 +817,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 		.append('svg:g')
 			.attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
 			.call(tron.led);
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -825,7 +825,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - Leading commas: **Nope.**
 
-	
+	```javascript
 	// bad
 	var once
 		, upon
@@ -851,13 +851,13 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 		heroName: 'Mr. Incredible',
 		superPower: 'strength'
 	};
-
+	```
 
 - Additional trailing comma: **Nope.** This can cause problems with IE6/7 and IE9 if it's in quirksmode. Also, in some implementations of ES3 would add length to an array if it had an additional trailing comma. This was clarified in ES5 ([source](http://es5.github.io/#D)):
 
 > Edition 5 clarifies the fact that a trailing comma at the end of an ArrayInitialiser does not add to the length of the array. This is not a semantic change from Edition 3 but some implementations may have previously misinterpreted this.
 
-	
+	```javascript
 	// bad
 	var hero = {
 		firstName: 'Kevin',
@@ -879,7 +879,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 		'Batman',
 		'Superman'
 	];
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -888,7 +888,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - **Yup.**
 
-	
+	```javascript
 	// bad
 	(function() {
 		var name = 'Skywalker'
@@ -906,7 +906,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 		var name = 'Skywalker';
 		return name;
 	})();
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -916,7 +916,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 - Perform type coercion at the beginning of the statement.
 - Strings:
 
-	
+	```javascript
 	//  => this.reviewScore = 9;
 
 	// bad
@@ -930,11 +930,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	var totalScore = this.reviewScore + ' total score';
-
+	```
 
 - Use `parseInt` for Numbers and always with a radix for type casting.
 
-	
+	```javascript
 	var inputValue = '4';
 
 	// bad
@@ -954,11 +954,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	var val = parseInt(inputValue, 10);
-
+	```
 
 - If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](http://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
 
-	
+	```javascript
 	// good
 	/**
 	 * parseInt was the reason my code was slow.
@@ -966,11 +966,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	 * Number made it a lot faster.
 	 */
 	var val = inputValue >> 0;
-
+	```
 
 - Booleans:
 
-	
+	```javascript
 	var age = 0;
 
 	// bad
@@ -981,7 +981,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	var hasAge = !!age;
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -990,7 +990,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - Avoid single letter names. Be descriptive with your naming.
 
-	
+	```javascript
 	// bad
 	function q() {
 		// ...stuff...
@@ -1000,11 +1000,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	function query() {
 		// ..stuff..
 	}
-
+	```
 
 - Use camelCase when naming objects, functions, and instances
 
-	
+	```javascript
 	// bad
 	var OBJEcttsssss = {};
 	var this_is_my_object = {};
@@ -1020,11 +1020,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	var user = new User({
 		name: 'Bob Parr'
 	});
-
+	```
 
 - Use PascalCase when naming constructors or classes
 
-	
+	```javascript
 	// bad
 	function user(options) {
 		this.name = options.name;
@@ -1042,22 +1042,22 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	var good = new User({
 		name: 'yup'
 	});
-
+	```
 
 - Use a leading underscore `_` when naming private properties
 
-	
+	```javascript
 	// bad
 	this.__firstName__ = 'Panda';
 	this.firstName_ = 'Panda';
 
 	// good
 	this._firstName = 'Panda';
-
+	```
 
 - When saving a reference to `this` use `_this`.
 
-	
+	```javascript
 	// bad
 	function() {
 		var self = this;
@@ -1081,11 +1081,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 			console.log(_this);
 		};
 	}
-
+	```
 
 - Name your functions. This is helpful for stack traces.
 
-	
+	```javascript
 	// bad
 	var log = function(msg) {
 		console.log(msg);
@@ -1095,7 +1095,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	var log = function log(msg) {
 		console.log(msg);
 	};
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -1105,7 +1105,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 - Accessor functions for properties are not required
 - If you do make accessor functions use getVal() and setVal('hello')
 
-	
+	```javascript
 	// bad
 	dragon.age();
 
@@ -1117,11 +1117,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	dragon.setAge(25);
-
+	```
 
 - If the property is a boolean, use isVal() or hasVal()
 
-	
+	```javascript
 	// bad
 	if (!dragon.age()) {
 		return false;
@@ -1131,11 +1131,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	if (!dragon.hasAge()) {
 		return false;
 	}
-
+	```
 
 - It's okay to create get() and set() functions, but be consistent.
 
-	
+	```javascript
 	function Jedi(options) {
 		options || (options = {});
 		var lightsaber = options.lightsaber || 'blue';
@@ -1149,7 +1149,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	Jedi.prototype.get = function(key) {
 		return this[key];
 	};
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -1158,7 +1158,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - Assign methods to the prototype object, instead of overwriting the prototype with a new object. Overwriting the prototype makes inheritance impossible: by resetting the prototype you'll overwrite the base!
 
-	
+	```javascript
 	function Jedi() {
 		console.log('new jedi');
 	}
@@ -1182,11 +1182,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	Jedi.prototype.block = function block() {
 		console.log('blocking');
 	};
-
+	```
 
 - Methods can return `this` to help with method chaining.
 
-	
+	```javascript
 	// bad
 	Jedi.prototype.jump = function() {
 		this.jumping = true;
@@ -1216,12 +1216,12 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	luke.jump()
 		.setHeight(20);
-
+	```
 
 
 - It's okay to write a custom toString() method, just make sure it works successfully and causes no side effects.
 
-	
+	```javascript
 	function Jedi(options) {
 		options || (options = {});
 		this.name = options.name || 'no name';
@@ -1234,7 +1234,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	Jedi.prototype.toString = function toString() {
 		return 'Jedi - ' + this.getName();
 	};
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -1277,7 +1277,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 - Add a method called noConflict() that sets the exported module to the previous version and returns this one.
 - Always declare `'use strict';` at the top of the module.
 
-	
+	```javascript
 	// fancyInput/fancyInput.js
 
 	!function(global) {
@@ -1296,7 +1296,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 		global.FancyInput = FancyInput;
 	}(this);
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -1305,17 +1305,17 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - Prefix jQuery object variables with a `$`.
 
-	
+	```javascript
 	// bad
 	var sidebar = $('.sidebar');
 
 	// good
 	var $sidebar = $('.sidebar');
-
+	```
 
 - Cache jQuery lookups.
 
-	
+	```javascript
 	// bad
 	function setSidebar() {
 		$('.sidebar').hide();
@@ -1338,12 +1338,12 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 			'background-color': 'pink'
 		});
 	}
-
+	```
 
 - For DOM queries use Cascading `$('.sidebar ul')` or parent > child `$('.sidebar > ul')`. [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
 - Use `find` with scoped jQuery object queries.
 
-	
+	```javascript
 	// bad
 	$('ul', '.sidebar').hide();
 
@@ -1358,7 +1358,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	$sidebar.find('ul');
-
+	```
 
 	**[[⬆]](#TOC)**
 
@@ -1374,11 +1374,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 - **Yup.**
 
-	
+	```javascript
 	function() {
 		return true;
 	}
-
+	```
 
 	**[[⬆]](#TOC)**
 
