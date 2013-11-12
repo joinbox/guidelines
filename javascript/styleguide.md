@@ -89,14 +89,14 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	```javascript
 	// bad
 	var superman = {
-		default: { clark: 'kent' },
-		private: true
+		  default: { clark: 'kent' }
+		, private: true
 	};
 
 	// good
 	var superman = {
-		defaults: { clark: 'kent' },
-		hidden: true
+		  defaults: { clark: 'kent' }
+		, hidden: true
 	};
 	```
 
