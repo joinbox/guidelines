@@ -31,10 +31,6 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 1. [Testing](#testing)
 1. [Performance](#performance)
 1. [Resources](#resources)
-1. [In the Wild](#in-the-wild)
-1. [Translation](#translation)
-1. [The JavaScript Style Guide Guide](#guide-guide)
-1. [Contributors](#contributors)
 1. [License](#license)
 
 ## <a name='types'>Types</a>
@@ -1296,30 +1292,51 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 ## <a name='events'>Events</a>
 
-- When attaching data payloads to events (whether DOM events or something more proprietary like Backbone events), pass a hash instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
+- When attaching data payloads to events, pass a hash instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
 
     ```js
     // bad
-    $(this).trigger('listingUpdated', listing.id);
+    var List = new Class({
+        inherits: Events
+
+        , push: function( item ) {
+            this.emit('itemAdded', item.id);
+        }
+    });
 
     ...
 
-    $(this).on('listingUpdated', function(e, listingId) {
-        // do something with listingId
+    var myList = new List();
+
+    myList.on('itemAdded', function(itemId){
+        log(itemId);
     });
+
+    myList.push({ id: 1, name: 'item 1' });
+
     ```
 
     prefer:
 
     ```js
     // good
-    $(this).trigger('listingUpdated', { listingId : listing.id });
+     var List = new Class({
+        inherits: Events
+
+        , push: function( item ) {
+            this.emit('itemAdded', item);
+        }
+    });
 
     ...
 
-    $(this).on('listingUpdated', function(e, data) {
-        // do something with data.listingId
+    var myList = new List();
+
+    myList.on('itemAdded', function(item){
+        item.expires = new Date();
     });
+
+    myList.push({ id: 1, name: 'item 1' });
     ```
 
 **[[⬆]](#TOC)**
@@ -1328,28 +1345,27 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 ## <a name='modules'>Modules</a>
 
 - The module should start with a `!`. This ensures that if a malformed module forgets to include a final semicolon there aren't errors in production when the scripts get concatenated. [Explanation](https://github.com/airbnb/javascript/issues/44#issuecomment-13063933)
-- The file should be named with camelCase, live in a folder with the same name, and match the name of the single export.
-- Add a method called noConflict() that sets the exported module to the previous version and returns this one.
+- The file should be named with camelCase unless it contains a Class.
 - Always declare `'use strict';` at the top of the module.
 
     ```javascript
-    // fancyInput/fancyInput.js
+    // List.js
 
     !function(global) {
         'use strict';
 
-        var previousFancyInput = global.FancyInput;
+        var   Events    = require('ee-event-emitter')
+            , Class     = require('ee-class')
+            , log       = require('ee-log');
 
-        function FancyInput(options) {
-            this.options = options || {};
-        }
+        var List = module.exports = new Class({
+            inherits: Events
 
-        FancyInput.noConflict = function noConflict() {
-            global.FancyInput = previousFancyInput;
-            return FancyInput;
-        };
-
-        global.FancyInput = FancyInput;
+            , push: function( item ) {
+                this.emit('itemAdded', item);
+            }
+        });
+        
     }(this);
     ```
 
@@ -1357,6 +1373,9 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 
 ## <a name='jquery'>jQuery</a>
+
+- Using jQuery when working with node.js: **Nope**
+- Using jQuery when working in the browser: Yup
 
 - Prefix jQuery object variables with a `$`.
 
@@ -1506,48 +1525,6 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 - [nettuts](http://net.tutsplus.com/?s=javascript)
 
 **[[⬆]](#TOC)**
-
-## <a name='in-the-wild'>In the Wild</a>
-
-This is a list of organizations that are using this style guide. Send us a pull request or open an issue and we'll add you to the list.
-
-- **Airbnb**: [airbnb/javascript](https://github.com/airbnb/javascript)
-- **American Insitutes for Research**: [AIRAST/javascript](https://github.com/AIRAST/javascript)
-- **Compass Learning**: [compasslearning/javascript-style-guide](https://github.com/compasslearning/javascript-style-guide)
-- **ExactTarget**: [ExactTarget/javascript](https://github.com/ExactTarget/javascript)
-- **GeneralElectric**: [GeneralElectric/javascript](https://github.com/GeneralElectric/javascript)
-- **GoodData**: [gooddata/gdc-js-style](https://github.com/gooddata/gdc-js-style)
-- **Grooveshark**: [grooveshark/javascript](https://github.com/grooveshark/javascript)
-- **How About We**: [howaboutwe/javascript](https://github.com/howaboutwe/javascript)
-- **Mighty Spring**: [mightyspring/javascript](https://github.com/mightyspring/javascript)
-- **MinnPost**: [MinnPost/javascript](https://github.com/MinnPost/javascript)
-- **ModCloth**: [modcloth/javascript](https://github.com/modcloth/javascript)
-- **National Geographic**: [natgeo/javascript](https://github.com/natgeo/javascript)
-- **National Park Service**: [nationalparkservice/javascript](https://github.com/nationalparkservice/javascript)
-- **Razorfish**: [razorfish/javascript-style-guide](https://github.com/razorfish/javascript-style-guide)
-- **Shutterfly**: [shutterfly/javascript](https://github.com/shutterfly/javascript)
-- **Userify**: [userify/javascript](https://github.com/userify/javascript)
-- **Zillow**: [zillow/javascript](https://github.com/zillow/javascript)
-- **ZocDoc**: [ZocDoc/javascript](https://github.com/ZocDoc/javascript)
-
-## <a name='translation'>Translation</a>
-
-This style guide is also available in other languages:
-
-- :de: **German**: [timofurrer/javascript-style-guide](https://github.com/timofurrer/javascript-style-guide)
-- :jp: **Japanese**: [mitsuruog/javacript-style-guide](https://github.com/mitsuruog/javacript-style-guide)
-- :br: **Portuguese**: [armoucar/javascript-style-guide](https://github.com/armoucar/javascript-style-guide)
-- :cn: **Chinese**: [adamlu/javascript-style-guide](https://github.com/adamlu/javascript-style-guide)
-- :es: **Spanish**: [paolocarrasco/javascript-style-guide](https://github.com/paolocarrasco/javascript-style-guide)
-
-## <a name='guide-guide'>The JavaScript Style Guide Guide</a>
-
-- [Reference](https://github.com/airbnb/javascript/wiki/The-JavaScript-Style-Guide-Guide)
-
-## <a name='authors'>Contributors</a>
-
-- [View Contributors](https://github.com/airbnb/javascript/graphs/contributors)
-
 
 ## <a name='license'>License</a>
 
