@@ -48,12 +48,12 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	+ `undefined`
 
 	```javascript
-	var foo = 1,
-			bar = foo;
+	var   foo = 1
+		, bar = foo;
 
 	bar = 9;
 
-	console.log(foo, bar); // => 1, 9
+	console.log( foo, bar ); // => 1, 9
 	```
 - **Complex**: When you access a complex type you work on a reference to its value
 
