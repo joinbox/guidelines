@@ -209,54 +209,54 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	var errorMessage = 'This is a super long error that ' +
-		'was thrown because of Batman.' +
-		'When you stop to think about ' +
-		'how Batman had anything to do ' +
-		'with this, you would get nowhere ' +
-		'fast.';
+					   'was thrown because of Batman.' +
+					   'When you stop to think about ' +
+					   'how Batman had anything to do ' +
+					   'with this, you would get nowhere ' +
+					   'fast.';
 	```
 
 - When programatically building up a string, use Array#join instead of string concatenation. Mostly for IE: [jsPerf](http://jsperf.com/string-vs-array-concat/2).
 
 	```javascript
-	var items,
-			messages,
-			length,
-			i;
+	var   items
+		, messages
+		, length
+		, i;
 
-	messages = [{
-			state: 'success',
-			message: 'This one worked.'
+	messages = [ {
+		  state: 	'success',
+		, message: 	'This one worked.'
 	},{
-			state: 'success',
-			message: 'This one worked as well.'
+		  state: 	'success',
+		, message: 	'This one worked as well.'
 	},{
-			state: 'error',
-			message: 'This one did not work.'
-	}];
+		  state: 	'error',
+		, message: 	'This one did not work.'
+	} ];
 
 	length = messages.length;
 
 	// bad
-	function inbox(messages) {
+	function inbox( messages ) {
 		items = '<ul>';
 
-		for (i = 0; i < length; i++) {
-			items += '<li>' + messages[i].message + '</li>';
+		for ( i = 0; i < length; i++ ) {
+			items += '<li>' + messages[ i ].message + '</li>';
 		}
 
 		return items + '</ul>';
 	}
 
 	// good
-	function inbox(messages) {
+	function inbox( messages ) {
 		items = [];
 
-		for (i = 0; i < length; i++) {
-			items[i] = messages[i].message;
+		for ( i = 0; i < length; i++ ) {
+			items[ i ] = messages[ i ].message;
 		}
 
-		return '<ul><li>' + items.join('</li><li>') + '</li></ul>';
+		return '<ul><li>' + items.join( '</li><li>' ) + '</li></ul>';
 	}
 	```
 
