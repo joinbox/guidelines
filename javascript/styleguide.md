@@ -347,11 +347,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 		, age: 	28
 	};
 
-	function getProp( prop ) {
-		return luke[ prop ];
-	}
-
-	var isJedi = getProp( 'jedi' );
+	var isJedi = luke[ prop ];
 	```
 
 	**[[⬆]](#TOC)**
@@ -378,9 +374,9 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	var dragonball = 'z';
 
 	// good
-	var items = getItems(),
-			goSportsTeam = true,
-			dragonball = 'z';
+	var   items 		= getItems()
+		, goSportsTeam 	= true
+		, dragonball 	= 'z';
 	```
 
 - Declare unassigned variables last. This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
@@ -388,21 +384,21 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	```javascript
 	// bad
 	var i, len, dragonball,
-			items = getItems(),
-			goSportsTeam = true;
+		items = getItems(),
+		goSportsTeam = true;
 
 	// bad
 	var i, items = getItems(),
-			dragonball,
-			goSportsTeam = true,
-			len;
+		dragonball,
+		goSportsTeam = true,
+		len;
 
 	// good
-	var items = getItems(),
-			goSportsTeam = true,
-			dragonball,
-			length,
-			i;
+	var   items 		= getItems()
+		, goSportsTeam 	= true
+		, dragonball
+		, length,
+		, i;
 	```
 
 - Assign variables at the top of their scope. This helps avoid issues with variable declaration and assignment hoisting related issues.
@@ -411,13 +407,13 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	// bad
 	function() {
 		test();
-		console.log('doing stuff..');
+		console.log( 'doing stuff..' );
 
 		//..other stuff..
 
 		var name = getName();
 
-		if (name === 'test') {
+		if ( name === 'test' ) {
 			return false;
 		}
 
@@ -429,11 +425,11 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 		var name = getName();
 
 		test();
-		console.log('doing stuff..');
+		console.log( 'doing stuff..' );
 
 		//..other stuff..
 
-		if (name === 'test') {
+		if ( name === 'test' ) {
 			return false;
 		}
 
@@ -444,7 +440,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	function() {
 		var name = getName();
 
-		if (!arguments.length) {
+		if ( !arguments.length ) {
 			return false;
 		}
 
@@ -453,7 +449,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	function() {
-		if (!arguments.length) {
+		if ( !arguments.length ) {
 			return false;
 		}
 
