@@ -62,12 +62,12 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	+ `function`
 
 	```javascript
-	var foo = [1, 2],
-			bar = foo;
+	var   foo = [ 1, 2 ]
+		, bar = foo;
 
-	bar[0] = 9;
+	bar[ 0 ] = 9;
 
-	console.log(foo[0], bar[0]); // => 9, 9
+	console.log( foo[ 0 ], bar[ 0 ] ); // => 9, 9
 	```
 
 	**[[⬆]](#TOC)**
