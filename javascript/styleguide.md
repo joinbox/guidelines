@@ -470,7 +470,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	// we know this wouldn't work (assuming there
 	// is no notDefined global variable)
 	function example() {
-		console.log(notDefined); // => throws a ReferenceError
+		console.log( notDefined ); // => throws a ReferenceError
 	}
 
 	// creating a variable declaration after you
@@ -478,7 +478,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	// variable hoisting. Note: the assignment
 	// value of `true` is not hoisted.
 	function example() {
-		console.log(declaredButNotAssigned); // => undefined
+		console.log( declaredButNotAssigned ); // => undefined
 		var declaredButNotAssigned = true;
 	}
 
@@ -487,7 +487,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	// Which means our example could be rewritten as:
 	function example() {
 		var declaredButNotAssigned;
-		console.log(declaredButNotAssigned); // => undefined
+		console.log( declaredButNotAssigned) ; // => undefined
 		declaredButNotAssigned = true;
 	}
 	```
@@ -496,12 +496,12 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	```javascript
 	function example() {
-		console.log(anonymous); // => undefined
+		console.log( anonymous ); // => undefined
 
 		anonymous(); // => TypeError anonymous is not a function
 
 		var anonymous = function() {
-			console.log('anonymous function expression');
+			console.log( 'anonymous function expression' );
 		};
 	}
 	```
@@ -510,26 +510,26 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	```javascript
 	function example() {
-		console.log(named); // => undefined
+		console.log( named ); // => undefined
 
 		named(); // => TypeError named is not a function
 
 		superPower(); // => ReferenceError superPower is not defined
 
 		var named = function superPower() {
-			console.log('Flying');
+			console.log( 'Flying' );
 		};
 	}
 
 	// the same is true when the function name
 	// is the same as the variable name.
 	function example() {
-		console.log(named); // => undefined
+		console.log( named ); // => undefined
 
 		named(); // => TypeError named is not a function
 
 		var named = function named() {
-			console.log('named');
+			console.log( 'named' );
 		}
 	}
 	```
@@ -541,7 +541,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 		superPower(); // => Flying
 
 		function superPower() {
-			console.log('Flying');
+			console.log( 'Flying' );
 		}
 	}
 	```
@@ -565,7 +565,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	+ **Strings** evaluate to **false** if an empty string `''`, otherwise **true**
 
 	```javascript
-	if ([0]) {
+	if ( [ 0 ] ) {
 		// true
 		// An array is an object, objects evaluate to true
 	}
@@ -575,22 +575,22 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	```javascript
 	// bad
-	if (name !== '') {
+	if ( name !== '' ) {
 		// ...stuff...
 	}
 
 	// good
-	if (name) {
+	if ( name ) {
 		// ...stuff...
 	}
 
 	// bad
-	if (collection.length > 0) {
+	if ( collection.length > 0 ) {
 		// ...stuff...
 	}
 
 	// good
-	if (collection.length) {
+	if ( collection.length ) {
 		// ...stuff...
 	}
 	```
