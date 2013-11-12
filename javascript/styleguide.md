@@ -869,13 +869,13 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	var hero = {
-		firstName: 'Kevin',
-		lastName: 'Flynn'
+		  firstName: 	'Kevin'
+		, lastName: 	'Flynn'
 	};
 
 	var heroes = [
-		'Batman',
-		'Superman'
+		  'Batman'
+		, 'Superman'
 	];
 	```
 
@@ -888,22 +888,22 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	```javascript
 	// bad
-	(function() {
+	( function() {
 		var name = 'Skywalker'
 		return name
-	})()
+	} )()
 
 	// good
-	(function() {
+	( function() {
 		var name = 'Skywalker';
 		return name;
-	})();
+	} )();
 
 	// good
-	;(function() {
+	;( function() {
 		var name = 'Skywalker';
 		return name;
-	})();
+	} )();
 	```
 
 	**[[⬆]](#TOC)**
@@ -936,7 +936,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	var inputValue = '4';
 
 	// bad
-	var val = new Number(inputValue);
+	var val = new Number( inputValue );
 
 	// bad
 	var val = +inputValue;
@@ -945,13 +945,13 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	var val = inputValue >> 0;
 
 	// bad
-	var val = parseInt(inputValue);
+	var val = parseInt( inputValue );
 
 	// good
-	var val = Number(inputValue);
+	var val = Number( inputValue );
 
 	// good
-	var val = parseInt(inputValue, 10);
+	var val = parseInt( inputValue, 10 );
 	```
 
 - If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](http://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
