@@ -945,13 +945,13 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	var val = inputValue >> 0;
 
 	// bad
-	var val = parseInt( inputValue );
+	var val = parseInt(inputValue);
 
 	// good
-	var val = Number( inputValue );
+	var val = Number(inputValue);
 
 	// good
-	var val = parseInt( inputValue, 10 );
+	var val = parseInt(inputValue, 10);
 	```
 
 - If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](http://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
