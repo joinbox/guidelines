@@ -728,12 +728,12 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 ## <a name='whitespace'>Whitespace</a>
 
-- Use soft tabs set to 2 spaces
+- Use soft tabs set to 4 spaces
 
     ```javascript
     // bad
     function() {
-    ∙∙∙∙var name;
+    ∙∙var name;
     }
 
     // bad
@@ -743,7 +743,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
     // good
     function() {
-    ∙∙var name;
+    ∙∙∙∙var name;
     }
     ```
 - Place 1 space before the leading brace.
@@ -797,8 +797,8 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
     // good
     $('#items')
         .find('.selected')
-            .highlight()
-            .end()
+        .highlight()
+        .end()
         .find('.open')
             .updateCount();
 
@@ -810,46 +810,46 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
     // good
     var leds = stage.selectAll('.led')
-            .data(data)
+        .data(data)
         .enter().append('svg:svg')
-            .class('led', true)
-            .attr('width',  (radius + margin) * 2)
+        .class('led', true)
+        .attr('width',  (radius + margin) * 2)
         .append('svg:g')
-            .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
-            .call(tron.led);
+        .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
+        .call(tron.led);
     ```
 
     **[[⬆]](#TOC)**
 
 ## <a name='commas'>Commas</a>
 
-- Leading commas: **Nope.**
+- Leading commas: **Yup.**
 
     ```javascript
     // bad
-    var once
+    var once,
+        upon,
+        aTime;
+
+    // good
+    var   once
         , upon
         , aTime;
 
-    // good
-    var once,
-            upon,
-            aTime;
-
     // bad
-    var hero = {
-            firstName: 'Bob'
-        , lastName: 'Parr'
-        , heroName: 'Mr. Incredible'
-        , superPower: 'strength'
-    };
-
-    // good
     var hero = {
         firstName: 'Bob',
         lastName: 'Parr',
         heroName: 'Mr. Incredible',
         superPower: 'strength'
+    };
+
+    // good
+    var hero = {
+          firstName: 'Bob'
+        , lastName: 'Parr'
+        , heroName: 'Mr. Incredible'
+        , superPower: 'strength'
     };
     ```
 
@@ -871,13 +871,13 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
     // good
     var hero = {
-        firstName: 'Kevin',
-        lastName: 'Flynn'
+         firstName: 'Kevin'
+        , lastName: 'Flynn'
     };
 
     var heroes = [
-        'Batman',
-        'Superman'
+          'Batman'
+        , 'Superman'
     ];
     ```
 
@@ -1103,7 +1103,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 ## <a name='accessors'>Accessors</a>
 
 - Accessor functions for properties are not required
-- If you do make accessor functions use getVal() and setVal('hello')
+- If you do make accessor functions use getVal() and setVal('hello') if you make use of asynchronous functionality with callbacks or make use of js getters / setter
 
     ```javascript
     // bad
@@ -1117,6 +1117,28 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
     // good
     dragon.setAge(25);
+
+    // good
+    Object.defineProperty(obj, 'age', {
+          enumerable: true
+        , set: function( val ){ this._age = val; }
+        , get: function(){ return this._age; }
+    });
+
+    // good
+    var Jedi = new Class({
+        init: function(options){
+
+        }
+
+        , set age( val ){
+            this._age = val;
+        }
+
+        , get age(){
+            return  this._age;
+        }
+    });
     ```
 
 - If the property is a boolean, use isVal() or hasVal()
@@ -1136,19 +1158,19 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 - It's okay to create get() and set() functions, but be consistent.
 
     ```javascript
-    function Jedi(options) {
-        options || (options = {});
-        var lightsaber = options.lightsaber || 'blue';
-        this.set('lightsaber', lightsaber);
-    }
+    var Jedi = new Class({
+        init: function(options) {
+            this.set(optins && optiosn.lightsaber ? options.lightsaber : 'blue');
+        }
 
-    Jedi.prototype.set = function(key, val) {
-        this[key] = val;
-    };
+        , set: function(key, val) {
+            this[key] = val;
+        }
 
-    Jedi.prototype.get = function(key) {
-        return this[key];
-    };
+        , get: function(key) {
+            return this[key];
+        }
+    });
     ```
 
     **[[⬆]](#TOC)**
@@ -1156,9 +1178,26 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 ## <a name='constructors'>Constructors</a>
 
-- Assign methods to the prototype object, instead of overwriting the prototype with a new object. Overwriting the prototype makes inheritance impossible: by resetting the prototype you'll overwrite the base!
+- Make use of the [ee-class](https://github.com/eventEmitter/ee-class) implementation when creating classes
 
     ```javascript
+    // good
+    var Jedi = new Class({
+
+        init: function() {
+            log('new jedi');
+        }
+
+        , fight: function() {
+            log('fighting');
+        }
+
+        , block: function() {
+            log('blocking');
+        }
+    });
+
+    // bad
     function Jedi() {
         console.log('new jedi');
     }
@@ -1174,7 +1213,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
         }
     };
 
-    // good
+    // bad
     Jedi.prototype.fight = function fight() {
         console.log('fighting');
     };
@@ -1188,52 +1227,68 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
     ```javascript
     // bad
-    Jedi.prototype.jump = function() {
-        this.jumping = true;
-        return true;
-    };
+    var Jedi = new Class({
 
-    Jedi.prototype.setHeight = function(height) {
-        this.height = height;
-    };
+        init: function() {
+            log('new jedi');
+        }
+
+        , fight: function() {
+            log('fighting');
+        }
+
+        , block: function() {
+            log('blocking');
+            return true;
+        }
+    });
 
     var luke = new Jedi();
-    luke.jump(); // => true
-    luke.setHeight(20) // => undefined
+    luke.fight(); // => undefined
+    luke.block(); // => true
 
     // good
-    Jedi.prototype.jump = function() {
-        this.jumping = true;
-        return this;
-    };
+    var Jedi = new Class({
 
-    Jedi.prototype.setHeight = function(height) {
-        this.height = height;
-        return this;
-    };
+        init: function() {
+            log('new jedi');
+        }
+
+        , fight: function() {
+            log('fighting');
+            return this;
+        }
+
+        , block: function() {
+            log('blocking');
+            return this;
+        }
+    });
 
     var luke = new Jedi();
-
-    luke.jump()
-        .setHeight(20);
+    luke.fight()
+        .block();
     ```
 
 
 - It's okay to write a custom toString() method, just make sure it works successfully and causes no side effects.
 
     ```javascript
-    function Jedi(options) {
-        options || (options = {});
-        this.name = options.name || 'no name';
-    }
+    var Jedi = new Class({
 
-    Jedi.prototype.getName = function getName() {
-        return this.name;
-    };
+        init: function(options) {
+            this.name = options.name || "anonymous";
+        }
 
-    Jedi.prototype.toString = function toString() {
-        return 'Jedi - ' + this.getName();
-    };
+        , sayHi: function() {
+            log(this.name);
+            return this;
+        }
+
+        , toString: function() {
+            return 'I'm ' + this.name;
+        }
+    });
     ```
 
     **[[⬆]](#TOC)**
