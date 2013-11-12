@@ -1286,7 +1286,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
         }
 
         , toString: function() {
-            return 'I'm ' + this.name;
+            return 'I\'m ' + this.name;
         }
     });
     ```
