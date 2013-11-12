@@ -640,7 +640,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	//
 	// @param <String> tag
 	// @return <Element> element
-	function make(tag) {
+	function make( tag ) {
 
 		// ...stuff...
 
@@ -655,7 +655,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	 * @param <String> tag
 	 * @return <Element> element
 	 */
-	function make(tag) {
+	function make( tag ) {
 
 		// ...stuff...
 
@@ -675,7 +675,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// bad
 	function getType() {
-		console.log('fetching type...');
+		console.log( 'fetching type...' );
 		// set the default type to 'no type'
 		var type = this._type || 'no type';
 
@@ -684,7 +684,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	function getType() {
-		console.log('fetching type...');
+		console.log( 'fetching type...' );
 
 		// set the default type to 'no type'
 		var type = this._type || 'no type';
@@ -724,12 +724,12 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 ## <a name='whitespace'>Whitespace</a>
 
-- Use soft tabs set to 2 spaces
+- Use tabs set to 4 spaces
 
 	```javascript
 	// bad
 	function() {
-	∙∙∙∙var name;
+	∙∙var name;
 	}
 
 	// bad
@@ -739,10 +739,10 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	function() {
-	∙∙var name;
+	∙∙∙∙var name;
 	}
 	```
-- Place 1 space before the leading brace.
+- Place 1 space before the leading brace, place 1 space between braces and their content.
 
 	```javascript
 	// bad
@@ -752,7 +752,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	// good
 	function test() {
-		console.log('test');
+		console.log( 'test' );
 	}
 
 	// bad
@@ -762,10 +762,10 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	});
 
 	// good
-	dog.set('attr', {
-		age: '1 year',
-		breed: 'Bernese Mountain Dog'
-	});
+	dog.set( 'attr', {
+		  age: 		'1 year',
+		, breed: 	'Bernese Mountain Dog'
+	} );
 	```
 - Place an empty newline at the end of the file.
 
