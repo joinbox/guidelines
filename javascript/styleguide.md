@@ -610,10 +610,10 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 		return false;
 
 	// good
-	if (test) return false;
+	if ( test ) return false;
 
 	// good
-	if (test) {
+	if ( test ) {
 		return false;
 	}
 
