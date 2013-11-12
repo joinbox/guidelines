@@ -139,22 +139,22 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 
 	// bad
-	someStack[someStack.length] = 'abracadabra';
+	someStack[ someStack.length ] = 'abracadabra';
 
 	// good
-	someStack.push('abracadabra');
+	someStack.push( 'abracadabra' );
 	```
 
 - When you need to copy an array use Array#slice. [jsPerf](http://jsperf.com/converting-arguments-to-an-array/7)
 
 	```javascript
-	var len = items.length,
-			itemsCopy = [],
-			i;
+	var   len 		= items.length
+		, itemsCopy = []
+		, i;
 
 	// bad
-	for (i = 0; i < len; i++) {
-		itemsCopy[i] = items[i];
+	for ( i = 0; i < len; i++ ) {
+		itemsCopy[ i ] = items[ i ];
 	}
 
 	// good
@@ -165,7 +165,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	```javascript
 	function trigger() {
-		var args = Array.prototype.slice.call(arguments);
+		var args = Array.prototype.slice.call( arguments );
 		...
 	}
 	```
