@@ -837,6 +837,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 		firstName: 'Bob',
 		lastName: 'Parr',
 		heroName: 'Mr. Incredible',
+		age: 3
 		superPower: 'strength'
 	};
 
@@ -845,6 +846,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 		  firstName: 	'Bob'
 		, lastName: 	'Parr'
 		, heroName: 	'Mr. Incredible'
+		, age: 			3
 		, superPower: 	'strength'
 	};
 	```
