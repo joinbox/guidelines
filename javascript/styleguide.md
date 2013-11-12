@@ -279,9 +279,9 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	};
 
 	// immediately-invoked function expression (IIFE)
-	(function() {
-		console.log('Welcome to the Internet. Please follow me.');
-	})();
+	( function() {
+		console.log( 'Welcome to the Internet. Please follow me.' );
+	} )();
 	```
 
 - Never declare a function in a non-function block (if, while, etc). Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently, which is bad news bears.
@@ -289,17 +289,17 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	```javascript
 	// bad
-	if (currentUser) {
+	if ( currentUser ) {
 		function test() {
-			console.log('Nope.');
+			console.log( 'Nope.' );
 		}
 	}
 
 	// good
 	var test;
-	if (currentUser) {
+	if ( currentUser ) {
 		test = function test() {
-			console.log('Yup.');
+			console.log( 'Yup.' );
 		};
 	}
 	```
@@ -308,12 +308,12 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	```javascript
 	// bad
-	function nope(name, options, arguments) {
+	function nope( name, options, arguments ) {
 		// ...stuff...
 	}
 
 	// good
-	function yup(name, options, args) {
+	function yup( name, options, args ) {
 		// ...stuff...
 	}
 	```
@@ -328,12 +328,12 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	```javascript
 	var luke = {
-		jedi: true,
-		age: 28
+		  jedi: true
+		, age: 	28
 	};
 
 	// bad
-	var isJedi = luke['jedi'];
+	var isJedi = luke[ 'jedi' ];
 
 	// good
 	var isJedi = luke.jedi;
@@ -343,15 +343,15 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	```javascript
 	var luke = {
-		jedi: true,
-		age: 28
+		  jedi: true
+		, age: 	28
 	};
 
-	function getProp(prop) {
-		return luke[prop];
+	function getProp( prop ) {
+		return luke[ prop ];
 	}
 
-	var isJedi = getProp('jedi');
+	var isJedi = getProp( 'jedi' );
 	```
 
 	**[[⬆]](#TOC)**
