@@ -742,7 +742,7 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	∙∙∙∙var name;
 	}
 	```
-- Place 1 space before the leading brace, place 1 space between braces and their content.
+- Place 1 space before the leading brace, place 1 space between braces and their content. Indent Hashes with mutliple key value pairs so that their keys & values start at an equal indentation.
 
 	```javascript
 	// bad
@@ -778,9 +778,9 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	```javascript
 	// good
-	(function(global) {
+	(function( global ) {
 		// ...stuff...
-	})(this);
+	})( this );
 
 	```
 
