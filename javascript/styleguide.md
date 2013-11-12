@@ -778,9 +778,9 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 
 	```javascript
 	// good
-	(function( global ) {
+	( function( global ) {
 		// ...stuff...
-	})( this );
+	} )( this );
 
 	```
 
@@ -791,12 +791,12 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 	$('#items').find('.selected').highlight().end().find('.open').updateCount();
 
 	// good
-	$('#items')
-		.find('.selected')
-			.highlight()
-			.end()
-		.find('.open')
-			.updateCount();
+	$( '#items' )
+		.find( '.selected' )
+		.highlight()
+		.end()
+		.find( '.open' )
+		.updateCount();
 
 	// bad
 	var leds = stage.selectAll('.led').data(data).enter().append('svg:svg').class('led', true)
@@ -805,47 +805,47 @@ This almost an identical copy of the [Airbnb JavaScript Style Guide](https://git
 			.call(tron.led);
 
 	// good
-	var leds = stage.selectAll('.led')
-			.data(data)
-		.enter().append('svg:svg')
-			.class('led', true)
-			.attr('width',  (radius + margin) * 2)
-		.append('svg:g')
-			.attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
-			.call(tron.led);
+	var leds = stage.selectAll( '.led' )
+		.data( dat a)
+		.enter().append( 'svg:svg' )
+		.class( 'led', true )
+		.attr( 'width',  ( radius + margin ) * 2 )
+		.append( 'svg:g' )
+		.attr( 'transform', 'translate( ' + ( radius + margin ) + ',' + ( radius + margin ) + ')' )
+		.call( tron.led );
 	```
 
 	**[[⬆]](#TOC)**
 
 ## <a name='commas'>Commas</a>
 
-- Leading commas: **Nope.**
+- Leading commas: **Yup.**
 
 	```javascript
 	// bad
-	var once
+	var once,
+		upon,
+		aTime;
+
+	// good
+	var   once
 		, upon
 		, aTime;
 
-	// good
-	var once,
-			upon,
-			aTime;
-
 	// bad
-	var hero = {
-			firstName: 'Bob'
-		, lastName: 'Parr'
-		, heroName: 'Mr. Incredible'
-		, superPower: 'strength'
-	};
-
-	// good
 	var hero = {
 		firstName: 'Bob',
 		lastName: 'Parr',
 		heroName: 'Mr. Incredible',
 		superPower: 'strength'
+	};
+
+	// good
+	var hero = {
+		  firstName: 	'Bob'
+		, lastName: 	'Parr'
+		, heroName: 	'Mr. Incredible'
+		, superPower: 	'strength'
 	};
 	```
 
