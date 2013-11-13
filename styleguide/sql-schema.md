@@ -139,4 +139,4 @@ CREATE TABLE userAddress (
 )
 ```
 
-
+It's very important not to set the «ON DELETE» and «ON UPDATE» correct for all foreign keys!
