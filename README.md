@@ -4,10 +4,12 @@
 
 - [Bug Reporting Styleguide](/bugtracker)
 
+
 ##### For javascript Developers
 
 - [Javascript Styleguide](styleguide/javascript.md)
-- [Node.js Styleguide](/styleguide/node.js.md)
+- [Node.js Styleguide](/styleguide/node.md)
+- [Joinbox Node.js Modules](/styleguide/ee-modules.md)
 
 
 ##### For DB Developers
@@ -16,7 +18,7 @@
 - [SQL Styleguide](/styleguide/sql.md)
 
 
-##### For RESTFul Service Developers
+##### For RESTful Service Developers
 
 - [RESTful Styleguide](/styleguide/restful.md)
 
