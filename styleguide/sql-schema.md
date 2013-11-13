@@ -4,7 +4,7 @@ This Styleguide defines how tables should be defined.
 
 
 
-#### Naming
+## Naming
 
 Table & column names must be defined singular.
 
@@ -24,7 +24,7 @@ CREATE TABLE user (
 )
 ```
 
-Table & column names must be camelCase except for names referencing another entity.
+Table & column names must be camelCase except for names referencing another entity. Tablenames of mapping tables must be defined as follows: «tableX_tableY». Columns referncing a column in another table must be defined as follows: «targetTableColumnName_targetTableTableName».
 
 
 ```SQL
@@ -79,5 +79,64 @@ CREATE TABLE user_images (
 	, PRIMARY KEY (id_user,id_image)
 	, CONSTRAINT fk_user FOREIGN KEY (id_user) REFERENCES user(id)
 	, CONSTRAINT fk_image FOREIGN KEY (id_image) REFERENCES image(id)
-	)
+)
 ```
+
+## Normalization
+
+It's important that all data is stored normalized.
+
+
+```SQL
+/* bad */
+CREATE TABLE userAddress (
+	  id INT(11) NOT NULL AUTO_INCREMENT
+	, id_user INT(11) NOT NULL
+	, street VARCHAR(200) NOT NULL
+	, building VARCHAR(100) NOT NULL
+	, zip VARCHAR(100) NOT NULL
+	, municipality VARCHAR(150) NOT NULL
+	, PRIMARY KEY (id)
+	, KEY id_user(id_user)
+	, CONSTRAINT fk_user FOREIGN KEY (id_user) REFERENCES user(id)
+)
+
+/* good */
+CREATE TABLE country (
+	  id INT(11) NOT NULL AUTO_INCREMENT
+	, name VARCHAR(200) NOT NULL
+	, PRIMARY KEY (id)
+)
+
+CREATE TABLE municipality (
+	  id INT(11) NOT NULL AUTO_INCREMENT
+	, id_country INT(11) NOT NULL
+	, name VARCHAR(200) NOT NULL
+	, PRIMARY KEY (id)
+	, KEY id_country(id_country)
+	, CONSTRAINT fk_country FOREIGN KEY (id_country) REFERENCES country(id)
+)
+
+CREATE TABLE street (
+	  id INT(11) NOT NULL AUTO_INCREMENT
+	, id_municipality INT(11) NOT NULL
+	, name VARCHAR(200) NOT NULL
+	, PRIMARY KEY (id)
+	, KEY id_municipality(id_municipality)
+	, CONSTRAINT fk_municipality FOREIGN KEY (id_municipality) REFERENCES municipality(id)
+)
+
+CREATE TABLE userAddress (
+	  id INT(11) NOT NULL AUTO_INCREMENT
+	, id_user INT(11) NOT NULL
+	, id_street INT(11) NOT NULL
+	, building VARCHAR(100) NOT NULL
+	, PRIMARY KEY (id)
+	, KEY id_user(id_user)
+	, KEY id_street(id_street)
+	, CONSTRAINT fk_user FOREIGN KEY (id_user) REFERENCES user(id)
+	, CONSTRAINT fk_street FOREIGN KEY (id_street) REFERENCES street(id)
+)
+```
+
+
