@@ -1,24 +1,22 @@
-# Guidelines & Styleguides for Joinbox Developers
+# Styleguides for Joinbox Developers
 
-#### Styleguides
-
-##### for testers
+##### For Testers
 
 - [Bug Reporting Styleguide](/bugtracker)
 
-##### for javascript developers
+##### For javascript Developers
 
 - [Javascript Styleguide](styleguide/javascript.md)
 - [Node.js Styleguide](/styleguide/node.js.md)
 
 
-##### for DB users
+##### For DB Developers
 
 - [Schema Styleguide](/styleguide/sql-schema.md)
 - [SQL Styleguide](/styleguide/sql.md)
 
 
-##### for RESTFul service developers
+##### For RESTFul Service Developers
 
 - [RESTful Styleguide](/styleguide/restful.md)
 
