@@ -24,7 +24,8 @@ CREATE TABLE user (
 )
 ```
 
-Table & column must be camelCase except for names referencing another entity.
+Table & column names must be camelCase except for names referencing another entity.
+
 
 ```SQL
 /* a user has n email addresess, 1:n */
@@ -48,17 +49,20 @@ CREATE TABLE userEmail (
 	, KEY id_user(id_user)
 	, CONSTRAINT fk_user FOREIGN KEY (id_user) REFERENCES user(id)
 )
+```
 
 
-
+```SQL
 /* a user has n images which are stored in a central collection, n:n */
 CREATE TABLE image (
 	  id INT(11) NOT NULL AUTO_INCREMENT
 	, path VARCHAR(200) NOT NULL
 	, PRIMARY KEY (id)
 )
+```
 
 
+```SQL
 /* bad */
 CREATE TABLE userImages (
 	  userId INT(11) NOT NULL
