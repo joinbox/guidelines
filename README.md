@@ -1,8 +1,25 @@
-#guidelines
+# Guidelines & Styleguides for Joinbox Developers
 
-joinbox coding guidelines
+#### Styleguides
+
+##### for testers
+
+- [Bug Reporting Styleguide](/bugtracker)
+
+##### for javascript developers
+
+- [Javascript Styleguide](styleguide/javascript.md)
+- [Node.js Styleguide](/styleguide/node.js.md)
 
 
-- [node.js](https://github.com/joinbox/guidelines/tree/master/node.js)
-- [javascript styleguide](https://github.com/joinbox/guidelines/tree/master/javascript/styleguide.md)
-- [bug tracking](https://github.com/joinbox/guidelines/tree/master/bugtracker)
+##### for DB users
+
+- [Schema Styleguide](/styleguide/sql-schema.md)
+- [SQL Styleguide](/styleguide/sql.md)
+
+
+##### for RESTFul service developers
+
+- [RESTful Styleguide](/styleguide/restful.md)
+
+
