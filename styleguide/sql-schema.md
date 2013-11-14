@@ -139,4 +139,61 @@ CREATE TABLE userAddress (
 )
 ```
 
-It's ***very important*** not to set the «ON DELETE» and «ON UPDATE» correct for all foreign keys!
+It's ***very important*** to set the «ON DELETE» and «ON UPDATE» correct for all foreign keys!
+
+
+
+## Tree Structures
+
+Tree structures must be implemented using the Nested Set Model. There *may* be exceptions to this rule.
+
+- [Nested Set Examples](http://mikehillyer.com/articles/managing-hierarchical-data-in-mysql/)
+- [Nested Set wikipedia Page](http://en.wikipedia.org/wiki/Nested_set_model)
+
+
+
+## Stored Procedures / Functions
+
+Please avoid making stored Procedures / Functions. If you really have to make them **make sure they will have a deterministic output**. Replication will else fail horribly!
+
+
+
+## Locale Data
+
+If an entity contains localized data it must be moved to a mapping table between the entity and the language table. The name of locale tables must be «entityNameLoclae» instead of the normal naming pattern of mapping tables like «entityName_language».
+
+
+```SQL
+/* bad */
+CREATE TABLE event (
+	  id INT(11) NOT NULL AUTO_INCREMENT
+	, title VARCHAR(200) NOT NULL
+	, description_en TEXT NOT NULL
+	, descriptionDE TEXT NOT NULL
+	, PRIMARY KEY (id)
+)
+
+/* good */
+CREATE TABLE event (
+	  id INT(11) NOT NULL AUTO_INCREMENT
+	, title VARCHAR(200) NOT NULL
+	, PRIMARY KEY (id)
+)
+
+CREATE TABLE language (
+	  id INT(11) NOT NULL AUTO_INCREMENT
+	, iso2 VARCHAR(2) NOT NULL
+	, PRIMARY KEY (id)
+)
+
+CREATE TABLE eventLocale (
+	  id_event INT(11) NOT NULL
+	, id_language INT(11) NOT NULL
+	, description TEXT NOT NULL
+	, PRIMARY KEY (id)
+	, KEY id_event(id_event)
+	, KEY id_language(id_language)
+	, CONSTRAINT fk_event FOREIGN KEY (id_event) REFERENCES event(id)
+	, CONSTRAINT fk_language FOREIGN KEY (id_language) REFERENCES language(id)
+)
+```
