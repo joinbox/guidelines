@@ -160,7 +160,7 @@ Please avoid making stored Procedures / Functions. If you really have to make th
 
 ## Locale Data
 
-If an entity contains localized data it must be moved to a mapping table between the entity and the language table. The name of locale tables must be «entityNameLoclae» instead of the normal naming pattern of mapping tables like «entityName_language».
+If an entity contains localized data it must be moved to a mapping table between the entity and the language table. The name of locale tables must be «entityNameLocale» instead of the normal naming pattern of mapping tables like «entityName_language».
 
 
 ```SQL
@@ -197,3 +197,8 @@ CREATE TABLE eventLocale (
 	, CONSTRAINT fk_language FOREIGN KEY (id_language) REFERENCES language(id)
 )
 ```
+
+## Performance
+
+- Create an index on columns that are part of a filter
+- Avoid Boolean flags, use Datetime or something else wherever possible. 
