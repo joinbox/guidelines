@@ -128,5 +128,5 @@ WHERE lang.iso2 = 'en';
 
 ## performance
 
-- make sure indexes on the wueries you are filtering on are set.
+- make sure indexes on the queries you are filtering on are set.
 - try to query first again the good indexes ( id, name etc ) before using indexes / fields like a deleted flag.
