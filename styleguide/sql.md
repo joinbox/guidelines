@@ -15,10 +15,6 @@ select * from user;
 SELECT * FROM user;
 ```
 
-## Naming
-
-There is **no need** for enclosing named objects with quotation marks. If there is a problem with a named object without quotation marks you should consider using another name for the object.
-
 ## Aliases
 
 Aliases must be descriptive, they should not consist out of a single character. 
@@ -129,4 +125,4 @@ WHERE lang.iso2 = 'en';
 ## performance
 
 - make sure indexes on the queries you are filtering on are set.
-- try to query first again the good indexes ( id, name etc ) before using indexes / fields like a deleted flag.
+- try to query first again the good indexes ( id, name etc ) before using indexes / fields like a deleted flag
