@@ -50,16 +50,40 @@ A resource may have as many subresources / subcollections as required, the URL f
 - /user/1/comment/34
 
 
+
+
 ## Methods
 
-Methods available on collections
+### Methods available on resources
+
 - OPTIONS
 - GET
 - HEAD
 - DELETE
 - POST
 
-Methods available on resources
+
+#### OPTIONS
+
+The options request returns a reponse with the allow header which contains a comma separated list of the methods supported on the collection. The response body may contain a detailed description of the collection.
+
+
+Request
+```HTTP
+OPTIONS /user HTTP/1.1
+Host: somehost:12001
+Accept: Application/JSON
+Accept-Language: en
+```
+
+
+
+
+
+
+
+
+### Methods available on resources
 - OPTIONS
 - GET
 - HEAD
