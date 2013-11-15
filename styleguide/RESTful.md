@@ -1,4 +1,4 @@
-# GET /-Joinbox-/-RESTful-/-Style-/-Guide HTTP/1.1
+# GET /Joinbox-RESTful-Style-Guide
 
 This styleguide describes how RESTful Services should be designed. The target is to make the services available to other services and apps as simple as possible. Because of this it is very important all services use the same headers, parameters, encodings, methods and wokrflows.
 
@@ -63,7 +63,42 @@ A resource may have as many subresources / subcollections as required, the URL f
 - POST
 
 
-#### OPTIONS
+#### GET
+
+The GET method is used to get an optional filtered, paged set of resources. 
+
+Available request headers
+- **Range**: 0 based range index, only available if the options request did return the «Accept-Ranges: resources» header
+- **Accept**: The content type that can be accepted, will be «Application/JSON» most of the time
+- **Accept-Language**: If this header is omitted the resource will be returned in all available languages, this header may be set multiple times if the resource schould be returned in multiple languages. You may specify fallback languages if the resource is only partial available in the preferred language.
+- **X-Select**: CSV list of properties to return, you may obtain a list of available properties using the options request on the collection
+
+The example request below will return 
+
+*Request Headers*
+```HTTP
+GET /user HTTP/1.1
+Host: somehost:12001
+Accept: Application/JSON
+Accept-Language: de, fr;q=0.9, en;q=0.8
+Accept-Language: en, de;q=0.9
+Range: 0-10
+X-Select: id, tenant.id, tenant.name, profile.firstName, profile.lastName
+X-Order: profile.firstName DESC
+X-Group: tenant.id
+```
+
+*Response Headers*
+```HTTP
+HTTP/1.1 200 OK
+Content-Type: Application/JSON
+Date: Fri, 15 Nov 2013 12:12:14 GMT
+Range: 0-10
+```
+
+
+
+### The OPTIONS Method
 
 The options request returns a reponse with the allow header which contains a comma separated list of the methods supported on the collection. The response body may contain a detailed description of the collection.
 
@@ -73,7 +108,6 @@ The options request returns a reponse with the allow header which contains a com
 OPTIONS /user HTTP/1.1
 Host: somehost:12001
 Accept: Application/JSON
-Accept-Language: en
 ```
 
 *Response Headers*
@@ -82,9 +116,16 @@ HTTP/1.1 200 OK
 Content-Type: Application/JSON
 Date: Fri, 15 Nov 2013 12:12:14 GMT
 Allow: OPTIONS,GET,POST
+Accept-Ranges: resources
+X-Accept-Select: id, tenant.id, tenant.name, profile.firstName, profile.lastName, profile.street, profile.municipality
+X-Accept-Order: id, tenant.id, tenant.name, profile.firstName, profile.lastName, profile.street, profile.municipality
+X-Accept-Group: tenant.id, profile.street, profile.municipality
+X-Accept-Filter: id, tenant.id
 ```
 
 *Response Body*
+
+The data in the response body describes the collection / resource and the subresources of the collection / resource
 ```Javascript
 {
 	  allow: ['OPTIONS','GET','POST']
