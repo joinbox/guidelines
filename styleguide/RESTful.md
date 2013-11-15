@@ -1,4 +1,4 @@
-# GET /Joinbox/RESTful/Style/Guide
+# GET /-Joinbox-/-RESTful-/-Style-/-Guide HTTP/1.1
 
 This styleguide describes how RESTful Services should be designed. The target is to make the services available to other services and apps as simple as possible. Because of this it is very important all services use the same headers, parameters, encodings, methods and wokrflows.
 
@@ -88,8 +88,33 @@ Allow: OPTIONS,GET,POST
 ```Javascript
 {
 	  allow: ['OPTIONS','GET','POST']
-	, fields: {
-		
+	, properties: {
+		id: { 
+		  	  primary: 	true
+		  	, type: 	'int'
+		  	, filters: 	'numbers'
+		}
+		, tenant: {
+			  foreign: 	true
+		  	, type: 	'int'
+		  	, filters: 	'numbers'
+			, subresource: {
+				id: { 
+				  	  primary: 	true
+				  	, type: 	'int'
+				  	, filters: 	'numbers'
+				}
+				, name: {
+					  unique: 	true
+				  	, type: 	'string'
+				  	, filters: 	'strings'
+				}
+			}
+		}
+	}
+	, filters: {
+		  numbers: ['<', '>', '=', '!=', '>=', '<=', 'notNull', 'null', 'in']
+		, strings: ['=', '!=', 'like', 'notNull', 'null', 'in']
 	}
 }
 ```
