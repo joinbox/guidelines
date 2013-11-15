@@ -81,11 +81,10 @@ GET /user HTTP/1.1
 Host: somehost:12001
 Accept: Application/JSON
 Accept-Language: de, fr;q=0.9, en;q=0.8
-Accept-Language: en, de;q=0.9
 Range: 0-10
-X-Select: id, tenant.id, tenant.name, profile.firstName, profile.lastName
-X-Order: profile.firstName DESC
-X-Group: tenant.id
+X-Select: id, tenant.id, tenant.name, firends.id, friends.name
+X-Order: name DESC, firends.name DESC
+X-Filter: id=in(3,4), firstName=like(mich%)
 ```
 
 *Response Headers*
@@ -96,6 +95,38 @@ Date: Fri, 15 Nov 2013 12:12:14 GMT
 Range: 0-10
 ```
 
+*Response Body*
+```Javascript
+[
+	{
+		  id: 1
+		, name: "michael"
+		, tenant: {
+			  id: 1
+			, name: "default tenant"
+		}
+		, friends: [
+			{
+				  id: 4
+				, name: "fabian"
+			}
+			, {
+				  id: 5 
+				, name: "pereg"
+			}
+		]
+	}
+	, {
+		  id: 2
+		, name: "micha"
+		, tenant: {
+			  id: 4
+			, name: "events.ch"
+		}
+		, friends: []
+	}
+]
+```
 
 
 ### The OPTIONS Method
@@ -117,8 +148,8 @@ Content-Type: Application/JSON
 Date: Fri, 15 Nov 2013 12:12:14 GMT
 Allow: OPTIONS,GET,POST
 Accept-Ranges: resources
-X-Accept-Select: id, tenant.id, tenant.name, profile.firstName, profile.lastName, profile.street, profile.municipality
-X-Accept-Order: id, tenant.id, tenant.name, profile.firstName, profile.lastName, profile.street, profile.municipality
+X-Accept-Select: id, tenant.id, tenant.name, friends.id, friends.name
+X-Accept-Order: *
 X-Accept-Group: tenant.id, profile.street, profile.municipality
 X-Accept-Filter: id, tenant.id
 ```
