@@ -97,11 +97,31 @@ Select: id, name, tenant.id, tenant.name, friend.name, friend.id
 
 #### Filter
 
-Custom header used for filtering collections. The filters consist of a comma separated list of keys and values. string values in the value part of the key value pairs must be url encoded. this must not include the function name or operator. strings must be enclosed in quotation marks.
+Custom header used for filtering collections. The filters consist of a comma separated list of keys and values. String values in the value part of the key-value pairs must be url encoded. This must not include the function name or operator. Strings must be enclosed in quotation marks.
 
 ```HTTP
 GET /user HTTP/1.1
 Filter: id=in(3,4), firstName=like('mich%25')
+```
+
+
+#### Order
+
+Custom header for defining the order in which the results must be returned. The complete collection is ordered before a range from it is returned in the requested order.
+
+```HTTP
+GET /user HTTP/1.1
+Order: name, firends.name DESC
+```
+
+
+#### API-Version
+
+The API version to use to respond to requests
+
+```HTTP
+GET /user HTTP/1.1
+API-Version: 0.0.1
 ```
 
 
