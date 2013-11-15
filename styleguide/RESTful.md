@@ -74,7 +74,7 @@ Available request headers
 - **X-Select**: CSV list of properties to return, you may obtain a list of available properties using the options request on the collection
 
 The example request below will do the following:
-- return the users properties id, the properties id and name of the related tenant and the properties id and name of all related friends
+- return the users property «id», the related tenants properties «id» and «name» and the related friends properties «id» and «name»
 - filter the user by id ( in 3, 4 ) and name ( like micha% )
 - limit the result count to 11, starting at offset 0
 - return the data in german
