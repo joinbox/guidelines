@@ -73,7 +73,11 @@ Available request headers
 - **Accept-Language**: The language to return the resource in
 - **X-Select**: CSV list of properties to return, you may obtain a list of available properties using the options request on the collection
 
-The example request below will return 
+The example request below will do the following:
+- return the users properties id, the properties id and name of the related tenant and the properties id and name of all related friends
+- filter the user by id ( in 3, 4 ) and name ( like micha% )
+- limit the result count to 11, starting at offset 0
+- return the data in german
 
 *Request Headers*
 ```HTTP
@@ -82,7 +86,7 @@ Host: somehost:12001
 Accept: Application/JSON
 Accept-Language: de, fr;q=0.9, en;q=0.8
 Range: 0-10
-X-Select: id, tenant.id, tenant.name, firends.id, friends.name
+X-Select: id, tenant.id, tenant.name, friends.id, friends.name
 X-Order: name DESC, firends.name DESC
 X-Filter: id=in(3,4), firstName=like(mich%)
 ```
@@ -92,14 +96,14 @@ X-Filter: id=in(3,4), firstName=like(mich%)
 HTTP/1.1 200 OK
 Content-Type: Application/JSON
 Date: Fri, 15 Nov 2013 12:12:14 GMT
-Range: 0-10
+Range: 0-1
 ```
 
 *Response Body*
 ```Javascript
 [
 	{
-		  id: 1
+		  id: 4
 		, name: "michael"
 		, tenant: {
 			  id: 1
@@ -107,17 +111,17 @@ Range: 0-10
 		}
 		, friends: [
 			{
-				  id: 4
-				, name: "fabian"
-			}
-			, {
 				  id: 5 
 				, name: "pereg"
+			}
+			, {
+				  id: 4
+				, name: "fabian"
 			}
 		]
 	}
 	, {
-		  id: 2
+		  id: 3
 		, name: "micha"
 		, tenant: {
 			  id: 4
