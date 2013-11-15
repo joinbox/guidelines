@@ -1,4 +1,4 @@
-# GET /Joinbox-RESTful-Style-Guide
+# GET /Joinbox/RESTful/StyleG/httpuide
 
 This styleguide describes how RESTful Services should be designed. The target is to make the services available to other services and apps as simple as possible. Because of this it is very important all services use the same headers, parameters, encodings, methods and wokrflows.
 
@@ -340,8 +340,7 @@ Range: 0-10
 		, friends: []
 	}
 ]
-
-
+```
 
 
 
