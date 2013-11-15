@@ -70,7 +70,7 @@ The GET method is used to get an optional filtered, paged set of resources.
 Available request headers
 - **Range**: 0 based range index, only available if the options request did return the «Accept-Ranges: resources» header
 - **Accept**: The content type that can be accepted, will be «Application/JSON» most of the time
-- **Accept-Language**: If this header is omitted the resource will be returned in all available languages, this header may be set multiple times if the resource schould be returned in multiple languages. You may specify fallback languages if the resource is only partial available in the preferred language.
+- **Accept-Language**: The language to return the resource in
 - **X-Select**: CSV list of properties to return, you may obtain a list of available properties using the options request on the collection
 
 The example request below will return 
@@ -148,9 +148,8 @@ Content-Type: Application/JSON
 Date: Fri, 15 Nov 2013 12:12:14 GMT
 Allow: OPTIONS,GET,POST
 Accept-Ranges: resources
-X-Accept-Select: id, tenant.id, tenant.name, friends.id, friends.name
+X-Accept-Select: *, tenant.*, friends.*
 X-Accept-Order: *
-X-Accept-Group: tenant.id, profile.street, profile.municipality
 X-Accept-Filter: id, tenant.id
 ```
 
