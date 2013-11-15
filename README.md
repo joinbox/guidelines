@@ -20,6 +20,6 @@
 
 ##### For RESTful Service Developers
 
-- [RESTful Styleguide](/styleguide/restful.md)
+- [RESTful Styleguide](/styleguide/RESTful.md)
 
 
