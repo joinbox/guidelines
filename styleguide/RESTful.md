@@ -62,7 +62,7 @@ The content type that can be accepted, will be «Application/JSON» most of the 
 GET /user HTTP/1.1
 Accept: Application/JSON
 ```
-If the server cannot satisfy the request he will respond with the 406 - Not Acceptable status.
+If the server cannot satisfy the request he will respond with the **406 - Not Acceptable** status.
 
 
 #### Accept-Language
@@ -73,7 +73,7 @@ The requested content language. Most of the time this will be one of en, de, fr,
 GET /user HTTP/1.1
 Accept-Language: de, fr;q=0.9, en;q=0.8
 ```
-If the server cannot satisfy the request he will respond with the 406 - Not Acceptable status.
+If the server cannot satisfy the request he will respond with the **406 - Not Acceptable** status.
 
 
 #### Range
@@ -84,7 +84,7 @@ If the server cannot satisfy the request he will respond with the 406 - Not Acce
 GET /user HTTP/1.1
 Range: 0-10
 ```
-If the server cannot satisfy the request he will respond with the 416 - Requested Range Not Satisfiable status.
+If the server cannot satisfy the request he will respond with the **416 - Requested Range Not Satisfiable** status.
 
 
 #### Select
@@ -96,7 +96,7 @@ Custom headers for selecting data from resources / sub resources. The headers co
 GET /user HTTP/1.1
 Select: id, name, tenant.id, tenant.name, friend.name, friend.id
 ```
-If the server cannot satisfy the request he will respond with the 460 - Select Not Satisfiable status.
+If the server cannot satisfy the request he will respond with the **460 - Select Not Satisfiable** status.
 
 #### Filter
 
@@ -106,7 +106,7 @@ Custom header used for filtering collections. The filters consist of a comma sep
 GET /user HTTP/1.1
 Filter: id=in(3,4), firstName=like('mich%25')
 ```
-If the server cannot satisfy the request he will respond with the 461 - Filter Not Satisfiable status.
+If the server cannot satisfy the request he will respond with the **461 - Filter Not Satisfiable** status.
 
 
 #### Order
@@ -117,7 +117,7 @@ Custom header for defining the order in which the results must be returned. The 
 GET /user HTTP/1.1
 Order: name, firends.name DESC
 ```
-If the server cannot satisfy the request he will respond with the 462 - Ordering Not Satisfiable status.
+If the server cannot satisfy the request he will respond with the **462 - Ordering Not Satisfiable** status.
 
 
 #### API-Version
@@ -128,7 +128,7 @@ The API version to use to respond to requests
 GET /user HTTP/1.1
 API-Version: 0.0.1
 ```
-If the server cannot satisfy the request he will respond with the 463 - Unsupported API Version status.
+If the server cannot satisfy the request he will respond with the **463 - Unsupported API Version** status.
 
 
 ## Methods
