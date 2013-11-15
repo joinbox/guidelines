@@ -80,12 +80,12 @@ The requested content language. Most of the time this will be one of en, de, fr,
 If the server cannot satisfy the request he will respond with the **406 - Not Acceptable** status.
 
 
+Since all language specific data is stored in mapping tables between the entity and the language entity it is **not** required to submit the header. You can instead use the «Select» and «Filter» header for selecting the language data. If you use the «Accept-Language» header the service will return the resource in that specific language with the locale data included into the entity. If you use the «Select» header without the «Filter» header the service will return all locale records. Without the «Accept-Language» header the locale data will be returned, if selected, like all mppings inside an array. See the [Locale Data]() Section.
+
 ```HTTP
 GET /user HTTP/1.1
 Accept-Language: de, fr;q=0.9, en;q=0.8
 ```
-
-Since all language specific data is stored in mapping tables between the entit and the language entity it is **not** required to submit the accept language header. You can instead use the «Select» and «Filter» header for selecting the language data. If you use the «Accept-Language» header the service will return the resource in that specific language with the locale data flat included into the entity. If you use the «Select» header without the «Filter» header the service will return all locale records. Without the «Accept-Language» header the locale data will be returned like a mpping inside an array. See the [Locale Data]() Section.
 
 
 #### Range
