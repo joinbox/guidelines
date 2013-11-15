@@ -68,7 +68,7 @@ A resource may have as many subresources / subcollections as required, the URL f
 The options request returns a reponse with the allow header which contains a comma separated list of the methods supported on the collection. The response body may contain a detailed description of the collection.
 
 
-*Request*
+*Request Headers*
 ```HTTP
 OPTIONS /user HTTP/1.1
 Host: somehost:12001
@@ -76,12 +76,22 @@ Accept: Application/JSON
 Accept-Language: en
 ```
 
-*Response*
+*Response Headers*
 ```HTTP
 HTTP/1.1 200 OK
 Content-Type: Application/JSON
 Date: Fri, 15 Nov 2013 12:12:14 GMT
-Allow: OPTIONS,GET,HOST,POST
+Allow: OPTIONS,GET,POST
+```
+
+*Response Body*
+```Javascript
+{
+	  allow: ['OPTIONS','GET','POST']
+	, fields: {
+		
+	}
+}
 ```
 
 
