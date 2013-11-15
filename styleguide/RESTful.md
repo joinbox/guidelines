@@ -50,6 +50,59 @@ A resource may have as many subresources / subcollections as required, the URL f
 - /user/1/comment/34
 
 
+## Headers
+
+### Request Haders
+
+#### Accept
+
+The content type that can be accepted, will be «Application/JSON» most of the time
+
+```HTTP
+GET /user HTTP/1.1
+Accept: Application/JSON
+```
+
+
+#### Accept-Language
+
+The requested content language. Most of the time this will be one of en, de, fr, it.
+
+```HTTP
+GET /user HTTP/1.1
+Accept-Language: de, fr;q=0.9, en;q=0.8
+```
+
+
+#### Range
+
+0 based range index, supported by most collections. Only available if the options request did return the «Accept-Ranges: resources» header
+
+```HTTP
+GET /user HTTP/1.1
+Range: 0-10
+```
+
+
+#### Select
+
+Custom headers for selecting data from resources / sub resources. The headers content must be delivered as comma separated list. Fields of sub entities may be selected using the «.» ( dot ). 
+
+
+```HTTP
+GET /user HTTP/1.1
+Select: id, name, tenant.id, tenant.name, friend.name, friend.id
+```
+
+
+#### Filter
+
+Custom header used for filtering collections. The filters consist of a comma separated list of keys and values. string values in the value part of the key value pairs must be url encoded. this must not include the function name or operator. strings must be enclosed in quotation marks.
+
+```HTTP
+GET /user HTTP/1.1
+Filter: id=in(3,4), firstName=like('mich%25')
+```
 
 
 ## Methods
@@ -69,13 +122,13 @@ The GET method is used to get an optional filtered, paged set of resources.
 
 Available request headers
 - **Range**: 0 based range index, only available if the options request did return the «Accept-Ranges: resources» header
-- **Accept**: The content type that can be accepted, will be «Application/JSON» most of the time
+- **Accept**:
 - **Accept-Language**: The language to return the resource in
 - **X-Select**: CSV list of properties to return, you may obtain a list of available properties using the options request on the collection
 
 The example request below will do the following:
 - return the users property «id», the related tenants properties «id» and «name» and the related friends properties «id» and «name»
-- filter the user by id ( in 3, 4 ) and name ( like micha% )
+- filter the user by id ( in 3, 4 ) and name ( like micha% ), see [filters]()
 - limit the result count to 11, starting at offset 0
 - return the data in german
 
@@ -86,9 +139,10 @@ Host: somehost:12001
 Accept: Application/JSON
 Accept-Language: de, fr;q=0.9, en;q=0.8
 Range: 0-10
-X-Select: id, tenant.id, tenant.name, friends.id, friends.name
-X-Order: name DESC, firends.name DESC
-X-Filter: id=in(3,4), firstName=like(mich%)
+Select: id, tenant.id, tenant.name, friends.id, friends.name
+Order: name DESC, firends.name DESC
+Filter: id=in(3,4), firstName=like('mich%')
+API-Version: 0.0.1
 ```
 
 *Response Headers*
@@ -152,9 +206,9 @@ Content-Type: Application/JSON
 Date: Fri, 15 Nov 2013 12:12:14 GMT
 Allow: OPTIONS,GET,POST
 Accept-Ranges: resources
-X-Accept-Select: *, tenant.*, friends.*
-X-Accept-Order: *
-X-Accept-Filter: id, tenant.id
+Accept-Select: *, tenant.*, friends.*
+Accept-Order: *
+Accept-Filter: id, tenant.id
 ```
 
 *Response Body*
@@ -190,6 +244,15 @@ The data in the response body describes the collection / resource and the subres
 ```
 
 
+## Filters
+
+The list below reflects all possible filters. This does not mean that all collections do have support for them. The OPTIONS resuqest on the collection should return the collections capabilities.
+
+### Numbers
+
+- **=**: euqals, property=4
+- **!=**: not equals, property!=4
+- **<**: smallet than, property< 
 
 
 
