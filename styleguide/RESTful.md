@@ -70,10 +70,13 @@ Accept: Application/JSON
 The requested content language. Most of the time this will be one of en, de, fr, it.
 If the server cannot satisfy the request he will respond with the **406 - Not Acceptable** status.
 
+
 ```HTTP
 GET /user HTTP/1.1
 Accept-Language: de, fr;q=0.9, en;q=0.8
 ```
+
+Since all language specific data is stored in mapping tables between the entit and the language entity it is **not** required to submit the accept language header. You can instead use the «Select» and «Filter» header for selecting the language data. If you use the «Accept-Language» header the service will return the resource in that specific language with the locale data flat included into the entity. If you use the «Select» header without the «Filter» header the service will return all locale records. Without the «Accept-Language» header the locale data will be returned like a mpping inside an array. See the [Locale Data]() Section.
 
 
 #### Range
@@ -131,6 +134,11 @@ API-Version: 0.0.1
 ```
 
 
+
+
+
+
+
 ## Methods
 
 ### Methods available on collections
@@ -147,10 +155,13 @@ API-Version: 0.0.1
 The GET method is used to get an optional filtered, paged set of resources. 
 
 Available request headers
-- **Range**: 0 based range index, only available if the options request did return the «Accept-Ranges: resources» header
-- **Accept**:
-- **Accept-Language**: The language to return the resource in
-- **X-Select**: CSV list of properties to return, you may obtain a list of available properties using the options request on the collection
+- Accept
+- Accept-Language
+- Range
+- API-Version
+- Select
+- Order
+- Filter
 
 The example request below will do the following:
 - return the users property «id», the related tenants properties «id» and «name» and the related friends properties «id» and «name»
@@ -167,7 +178,7 @@ Accept-Language: de, fr;q=0.9, en;q=0.8
 Range: 0-10
 Select: id, tenant.id, tenant.name, friends.id, friends.name
 Order: name DESC, firends.name DESC
-Filter: id=in(3,4), firstName=like('mich%')
+Filter: id=in(3,4), firstName=like('mich%25')
 API-Version: 0.0.1
 ```
 
@@ -176,7 +187,98 @@ API-Version: 0.0.1
 HTTP/1.1 200 OK
 Content-Type: Application/JSON
 Date: Fri, 15 Nov 2013 12:12:14 GMT
-Range: 0-1
+Range: 0-10
+```
+
+*Response Body*
+```Javascript
+[
+	{
+		  id: 4
+		, name: "michael"
+		, tenant: {
+			  id: 1
+			, name: "default tenant"
+			, _rel: {
+				  _self: 		"/tenant/1"
+				, _collection: 	"/tenant"
+				, _rel: 		"/user/4/tenant/1"
+			}
+		}
+		, friend: [
+			{
+				  id: 5 
+				, name: "pereg"
+				, _rel: {
+					  _self: 		"/user/5"
+					, _collection: 	"/user"
+					, _rel: 		"/user/4/friend/5"
+				}
+			}
+			, {
+				  id: 4
+				, name: "fabian"
+				, _rel: {
+					  _self: 		"/user/4"
+					, _collection: 	"/user"
+					, _rel: 		"/user/4/friend/4"
+				}
+			}
+		]
+		, _rel: {
+			  _self: 		"/user/4"
+			, _collection: 	"/user"
+			, friend: 		"/user/4/friend"
+			, tenant: 		"/user/4/tenant"
+		}
+	}
+	, {
+		  id: 3
+		, name: "micha"
+		, tenant: {
+			  id: 4
+			, name: "events.ch"
+		}
+		, friends: []
+		, _rel: {
+			  _self: 		"/user/3"
+			, _collection: 	"/user"
+			, friend: 		"/user/3/friend"
+			, tenant: 		"/user/3/tenant"
+		}
+	}
+]
+```
+
+
+### POST
+
+Adds a new item to the collection automatically creating an id for the new resource. The created resource will be returned.
+
+Available request headers
+- Accept
+- API-Version
+
+
+*Request Headers*
+```HTTP
+GET /user HTTP/1.1
+Host: somehost:12001
+Accept: Application/JSON
+Accept-Language: de, fr;q=0.9, en;q=0.8
+Range: 0-10
+Select: id, tenant.id, tenant.name, friends.id, friends.name
+Order: name DESC, firends.name DESC
+Filter: id=in(3,4), firstName=like('mich%25')
+API-Version: 0.0.1
+```
+
+*Response Headers*
+```HTTP
+HTTP/1.1 200 OK
+Content-Type: Application/JSON
+Date: Fri, 15 Nov 2013 12:12:14 GMT
+Range: 0-10
 ```
 
 *Response Body*
@@ -210,7 +312,15 @@ Range: 0-1
 		, friends: []
 	}
 ]
-```
+
+
+
+
+
+
+
+
+
 
 
 ### The OPTIONS Method
