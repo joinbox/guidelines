@@ -95,20 +95,15 @@ Allow: OPTIONS,GET,POST
 		  	, filters: 	'numbers'
 		}
 		, tenant: {
-			  foreign: 	true
-		  	, type: 	'int'
-		  	, filters: 	'numbers'
-			, subresource: {
-				id: { 
-				  	  primary: 	true
-				  	, type: 	'int'
-				  	, filters: 	'numbers'
-				}
-				, name: {
-					  unique: 	true
-				  	, type: 	'string'
-				  	, filters: 	'strings'
-				}
+			id: { 
+			  	  primary: 	true
+			  	, type: 	'int'
+			  	, filters: 	'numbers'
+			}
+			, name: {
+				  unique: 	true
+			  	, type: 	'string'
+			  	, filters: 	'strings'
 			}
 		}
 	}
