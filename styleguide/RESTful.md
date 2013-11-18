@@ -290,9 +290,6 @@ The GET method is used to get an optional filtered, paged set of resources.
 - 405 **Method Not Allowed**: The request method is not supported on that resource
 - 406 **Not Acceptable**: The requested content type could not be accepted. Try another content type
 - 410 **Gone**: the resource is gone and will not be availabel again ( deleted resource )
-- 411 **Length Required**: The request did not specify the length of its content, which is required by the requested resource.
-- 413 **Request Entity Too Large**: The request is larger than the server is willing or able to process
-- 415 **Usupported Media Type**: The request entity has a media type which the server or resource does not support
 - 416 **Requested Range Not Satisfiable**
 - 429 **Too Many Requests**: you hit the request rate limit
 - 431 **Request Header Fields Too Large**: The server is unwilling to process the request because either an individual header field, or all the header fields collectively, are too large
@@ -423,6 +420,26 @@ Adds a new item to the collection automatically creating an id for the new resou
 - Date
 - Location
 
+
+**Status Codes**
+- 200 **OK**
+- 201 **Created**
+- 400 **Bad Request**: Syntax error in request, don't try the same request again!
+- 401 **Unauthorized**: Authentication required, see the «WWW-Authenticate» header
+- 403 **Forbidden**: Access is forbidden for the current user 
+- 404 **Not Found**
+- 405 **Method Not Allowed**: The request method is not supported on that resource
+- 406 **Not Acceptable**: The requested content type could not be accepted. Try another content type
+- 410 **Gone**: the resource is gone and will not be availabel again ( deleted resource )
+- 411 **Length Required**: The request did not specify the length of its content, which is required by the requested resource.
+- 413 **Request Entity Too Large**: The request is larger than the server is willing or able to process
+- 415 **Usupported Media Type**: The request entity has a media type which the server or resource does not support
+- 429 **Too Many Requests**: you hit the request rate limit
+- 431 **Request Header Fields Too Large**: The server is unwilling to process the request because either an individual header field, or all the header fields collectively, are too large
+- 460 **Select Not Satisfiable**: The select statment could not be satisified, one or more of the slected fields do not exist
+- 463 **Unsupported API Version**: The API Version requested is not supported by the server
+- 500 **Internal Server Error**
+
 **Example**
 
 The example request does the following
@@ -502,6 +519,26 @@ The following methods may be made available on resources
 
 **Optional Response Headers**
 - Content-Language
+
+
+**Status Codes**
+- 200 **OK**
+- 301 **Moved Permanently**: the resource was permanently moved to another location
+- 302 **Found**: The resource was moved temporarily
+- 304 **Not Modified**: In response to a «If-Not-Modified» headers
+- 400 **Bad Request**: Syntax error in request, don't try the same request again!
+- 401 **Unauthorized**: Authentication required, see the «WWW-Authenticate» header
+- 403 **Forbidden**: Access is forbidden for the current user 
+- 404 **Not Found**
+- 405 **Method Not Allowed**: The request method is not supported on that resource
+- 406 **Not Acceptable**: The requested content type could not be accepted. Try another content type
+- 410 **Gone**: the resource is gone and will not be availabel again ( deleted resource )
+- 429 **Too Many Requests**: you hit the request rate limit
+- 431 **Request Header Fields Too Large**: The server is unwilling to process the request because either an individual header field, or all the header fields collectively, are too large
+- 460 **Select Not Satisfiable**: The select statment could not be satisified, one or more of the slected fields do not exist
+- 463 **Unsupported API Version**: The API Version requested is not supported by the server
+- 500 **Internal Server Error**
+
 
 **Example**
 The example request will do the following:
@@ -613,6 +650,19 @@ Date: Fri, 15 Nov 2013 12:12:14 GMT
 **Optional Response Headers**
 - Content-Language
 
+**Status Codes**
+- 200 **OK**
+- 400 **Bad Request**: Syntax error in request, don't try the same request again!
+- 401 **Unauthorized**: Authentication required, see the «WWW-Authenticate» header
+- 403 **Forbidden**: Access is forbidden for the current user 
+- 404 **Not Found**
+- 405 **Method Not Allowed**: The request method is not supported on that resource
+- 406 **Not Acceptable**: The requested content type could not be accepted. Try another content type
+- 410 **Gone**: the resource is gone and will not be availabel again ( deleted resource )
+- 429 **Too Many Requests**: you hit the request rate limit
+- 431 **Request Header Fields Too Large**: The server is unwilling to process the request because either an individual header field, or all the header fields collectively, are too large
+- 463 **Unsupported API Version**: The API Version requested is not supported by the server
+- 500 **Internal Server Error**
 
 **Example**
 
@@ -668,6 +718,26 @@ Adds a new item to the collection or overwrites an existing one. The created res
 - Content-Length
 - Date
 - Location
+
+
+**Status Codes**
+- 200 **OK**
+- 400 **Bad Request**: Syntax error in request, don't try the same request again!
+- 401 **Unauthorized**: Authentication required, see the «WWW-Authenticate» header
+- 403 **Forbidden**: Access is forbidden for the current user 
+- 404 **Not Found**
+- 405 **Method Not Allowed**: The request method is not supported on that resource
+- 406 **Not Acceptable**: The requested content type could not be accepted. Try another content type
+- 410 **Gone**: the resource is gone and will not be availabel again ( deleted resource )
+- 411 **Length Required**: The request did not specify the length of its content, which is required by the requested resource.
+- 413 **Request Entity Too Large**: The request is larger than the server is willing or able to process
+- 415 **Usupported Media Type**: The request entity has a media type which the server or resource does not support
+- 429 **Too Many Requests**: you hit the request rate limit
+- 431 **Request Header Fields Too Large**: The server is unwilling to process the request because either an individual header field, or all the header fields collectively, are too large
+- 460 **Select Not Satisfiable**: The select statment could not be satisified, one or more of the slected fields do not exist
+- 463 **Unsupported API Version**: The API Version requested is not supported by the server
+- 500 **Internal Server Error**
+
 
 **Example**
 
@@ -742,6 +812,27 @@ Updates an existing item.
 - Date
 - Location
 
+
+**Status Codes**
+- 200 **OK**
+- 400 **Bad Request**: Syntax error in request, don't try the same request again!
+- 401 **Unauthorized**: Authentication required, see the «WWW-Authenticate» header
+- 403 **Forbidden**: Access is forbidden for the current user 
+- 404 **Not Found**
+- 405 **Method Not Allowed**: The request method is not supported on that resource
+- 406 **Not Acceptable**: The requested content type could not be accepted. Try another content type
+- 411 **Length Required**: The request did not specify the length of its content, which is required by the requested resource.
+- 413 **Request Entity Too Large**: The request is larger than the server is willing or able to process
+- 415 **Usupported Media Type**: The request entity has a media type which the server or resource does not support
+- 416 **Requested Range Not Satisfiable**
+- 429 **Too Many Requests**: you hit the request rate limit
+- 431 **Request Header Fields Too Large**: The server is unwilling to process the request because either an individual header field, or all the header fields collectively, are too large
+- 460 **Select Not Satisfiable**: The select statment could not be satisified, one or more of the slected fields do not exist
+- 461 **Filter Not Satisfiable**: The filter statment could not be satisified, one or more of the filtered fields does not exist or a filter method does not exist
+- 462 **Ordering Not Satisfiable**: The select statment could not be satisified, one or more of the slected fields do not exist
+- 463 **Unsupported API Version**: The API Version requested is not supported by the server
+- 500 **Internal Server Error**
+
 **Example**
 
 The example request does the following
@@ -800,6 +891,20 @@ Location: /user/7
 
 The options request returns information about methods and headers that can be used on the given collection / resource.
 
+**Status Codes**
+- 200 **OK**
+- 301 **Moved Permanently**: the resource was permanently moved to another location
+- 302 **Found**: The resource was moved temporarily
+- 400 **Bad Request**: Syntax error in request, don't try the same request again!
+- 401 **Unauthorized**: Authentication required, see the «WWW-Authenticate» header
+- 403 **Forbidden**: Access is forbidden for the current user 
+- 404 **Not Found**
+- 405 **Method Not Allowed**: The request method is not supported on that resource
+- 406 **Not Acceptable**: The requested content type could not be accepted. Try another content type
+- 410 **Gone**: the resource is gone and will not be availabel again ( deleted resource )
+- 429 **Too Many Requests**: you hit the request rate limit
+- 463 **Unsupported API Version**: The API Version requested is not supported by the server
+- 500 **Internal Server Error**
 
 *Request Headers*
 ```HTTP
