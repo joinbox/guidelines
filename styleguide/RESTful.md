@@ -726,11 +726,9 @@ Location: /user/7
 
 
 
+## The OPTIONS Method
 
-
-### The OPTIONS Method
-
-The options request returns a reponse with the allow header which contains a comma separated list of the methods supported on the collection. The response body may contain a detailed description of the collection.
+The options request returns information about methods and headers that can be used on the given collection / resource.
 
 
 *Request Headers*
@@ -758,7 +756,7 @@ The data in the response body describes the collection / resource and the subres
 ```Javascript
 {
 	  allow: ['OPTIONS','GET','POST']
-	, properties: {
+	, resource: {
 		id: { 
 		  	  primary: 	true
 		  	, type: 	'int'
@@ -787,25 +785,53 @@ The data in the response body describes the collection / resource and the subres
 
 ## Filters
 
-The list below reflects all possible filters. This does not mean that all collections do have support for them. The OPTIONS resuqest on the collection should return the collections capabilities.
+The filter described below may be supported by any collection. You may combine as many filters as you like. If you filter one property with mutliple filters the filters will be evaluated using the logical «and» oberator. If you want to use multiple filters using the «or» operator you must define them in multiple «Filter» headers.
+
 
 ### Numbers
 
-- **=**: euqals, property=4
-- **!=**: not equals, property!=4
-- **<**: smallet than, property< 
+```HTTP
+Filter: id=1
+Filter: id!=1
+Filter: id>=1
+Filter: id<=1
+Filter: id>1
+Filter: id<1
+Filter: id=in(1,2,3,4)
+Filter: id=null
+Filter: id=notNull
+```
 
+### Strings
+```HTTP
+Filter: name=fabian
+Filter: name!=felix
+Filter: name=in('fabian, 'michael')
+Filter: name=like('fabi*')
+Filter: name=null
+Filter: name=notNull
+```
 
+### Booleans
+```HTTP
+Filter: deleted=false
+Filter: deleted=true
+Filter: deleted=null
+Filter: name=notNull
+```
 
+### Date
 
+date properties may be filtered using the following format: «YYYY-MM-DD HH:MM:SS». You may omit any part from the right to the left, so is «YYYY-MM-DD HH» the equivalent of «YYYY-MM-DD HH:00:00» and «YYYY» is the equivalent of «YYYY-00-00 00:00:00».
 
-
-### Methods available on resources
-- OPTIONS
-- GET
-- HEAD
-- DELETE
-- PUT
-- PATCH
-
-
+```HTTP
+Filter: created=2013-11-18 
+Filter: created!=2013-11-18
+Filter: created>=2013-11-18 20:00:02
+Filter: created<=2013-11-18
+Filter: created>2013-11-18
+Filter: created<2013-11-18
+Filter: created=in(2013,2014)
+Filter: created=null
+Filter: created=notNull
+```
