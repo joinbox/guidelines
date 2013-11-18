@@ -113,7 +113,7 @@ The requested content language. Most of the time this will be one of en, de, fr,
 If the server cannot satisfy the request he will respond with the **406 - Not Acceptable** status.
 
 
-Since all language specific data is stored in mapping tables between the entity and the language entity it is **not** required to submit the header. You can instead use the «Select» and «Filter» header for selecting the language data. If you use the «Accept-Language» header the service will return the resource in that specific language with the locale data included into the entity. If you use the «Select» header without the «Filter» header the service will return all locale records. Without the «Accept-Language» header the locale data will be returned, if selected, like all mappings inside an array. See the [Locale Data]() Section.
+Since all language specific data is stored in mapping tables between the entity and the language entity it is **not** required to submit the header. You can instead use the «Select» and «Filter» header for selecting the language data. If you use the «Accept-Language» header the service will return the resource in that specific language with the locale data included into the entity. If you use the «Select» header without the «Filter» header the service will return all locale records. Without the «Accept-Language» header the locale data will be returned, if selected, like all mappings inside an array.
 
 ```HTTP
 GET /user HTTP/1.1
@@ -277,6 +277,33 @@ The GET method is used to get an optional filtered, paged set of resources.
 
 **Optional Response Headers**
 - Content-Language
+
+**Status Codes**
+- 200 **OK**
+- 301 **Moved Permanently**: the resource was permanently moved to another location
+- 302 **Found**: The resource was moved temporarily
+- 304 **Not Modified**: In response to a «If-Not-Modified» headers
+- 400 **Bad Request**: Syntax error in request, don't try the same request again!
+- 401 **Unauthorized**: Authentication required, see the «WWW-Authenticate» header
+- 403 **Forbidden**: Access is forbidden for the current user 
+- 404 **Not Found**
+- 405 **Method Not Allowed**: The request method is not supported on that resource
+- 406 **Not Acceptable**: The requested content type could not be accepted. Try another content type
+- 410 **Gone**: the resource is gone and will not be availabel again ( deleted resource )
+- 411 **Length Required**: The request did not specify the length of its content, which is required by the requested resource.
+- 413 **Request Entity Too Large**: The request is larger than the server is willing or able to process
+- 415 **Usupported Media Type**: The request entity has a media type which the server or resource does not support
+- 416 **Requested Range Not Satisfiable**
+- 429 **Too Many Requests**: you hit the request rate limit
+- 431 **Request Header Fields Too Large**: The server is unwilling to process the request because either an individual header field, or all the header fields collectively, are too large
+- 460 **Select Not Satisfiable**: The select statment could not be satisified, one or more of the slected fields do not exist
+- 461 **Filter Not Satisfiable**: The filter statment could not be satisified, one or more of the filtered fields does not exist or a filter method does not exist
+- 462 **Ordering Not Satisfiable**: The select statment could not be satisified, one or more of the slected fields do not exist
+- 463 **Unsupported API Version**: The API Version requested is not supported by the server
+- 500 **Internal Server Error**
+
+
+
 
 
 **Example**
