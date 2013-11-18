@@ -5,7 +5,10 @@ This styleguide describes how RESTful services should be designed @joinbox. All 
 Most of the functionality will be handled by the ee framework.
 
 
-## Naming 
+1. [Naming](#naming)
+
+
+## <a name="naming">Naming</a>
 
 - **Collection**: A collection is a collection of resources like users, events or venues
 - **Resource**: A resource is a single item of a collection, like one event or one user
