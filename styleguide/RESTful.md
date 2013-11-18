@@ -203,8 +203,6 @@ Content-Language: en
 
 
 
-```
-
 ## Methods
 
 ### Methods available on collections
