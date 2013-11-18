@@ -19,6 +19,25 @@ Most of the functionality will be handled by the ee framework.
 		1. [Filter](#Filter)
 		1. [Order](#Order)
 		1. [API-Version](#API-Version)
+	1. [Response Headers](#responseHeaders)
+		1. [Content-Type](#cType)
+		1. [Content-Range / Accept-Range](#)
+		1. [Content-Language](#cLanguage)
+1. [Methods](#Methods)
+	1. [Methods on Collections](#collectionMethods)
+		1. [GET](#GET)
+		1. [POST](#POST)
+	1. [Methods on Resources](#resourceMethods)
+		1. [GET](#rGET)
+		1. [DELETE](#DELETE)
+		1. [PUT](#PUT)
+		1. [PATCH](#PATCH)
+	1. [OPTIONS](#OPTIONS)
+1. [Filters](#Filters)
+	1. [Numbers](#Numbers)
+	1. [Strings](#Strings)
+	1. [Booleans](#Booleans)
+	1. [Date](#Date)
 
 
 ## <a name="naming">Naming</a>
@@ -31,7 +50,7 @@ Most of the functionality will be handled by the ee framework.
 - **Status**: HTTP response status code like 200, 400 or 500
 
 
-
+**[[⬆]](#TOC)**
 ## <a name="urls">URLs</a>
 
 Every entity is a collection and can be accessed through an URL. The URL consits of a descriptive name of the entity. You should always use the singular form for a collection name.
@@ -181,9 +200,10 @@ API-Version: 0.0.1
 ```
 
 
-### Response Headers
+**[[⬆]](#TOC)**
+### <a name="responseHeaders">Response Headers</a>
 
-#### Content-Type
+#### <a name="cType">Content-Type</a>
 
 The Content Type of the response, will almost always be «Application/JSON».
 
@@ -194,7 +214,8 @@ Content-Type: Application/JSON
 ```
 
 
-#### Range
+**[[⬆]](#TOC)**
+#### <a name="ranges">Range</a>
 
 Zero based resource range index. Describes the offset and length of the resources returned to the client. If the client did not specify a range the starting page of the range will be returned.
 
@@ -207,7 +228,8 @@ Content-Range: 0-9/5604
 ```
 
 
-#### Content-Language
+**[[⬆]](#TOC)**
+#### <a name="cLanguages">Content-Language</a>
 
 If the reqeust contained an «Accept-Language» header the resource(s) will be returned using the selected language an the «Content-Language» header will be set. 
 
@@ -218,7 +240,8 @@ Content-Language: en
 
 
 
-## Methods
+**[[⬆]](#TOC)**
+## <a name="collectionMethods">Methods available on collections</a>
 
 The following methods may be made available on collections
 
@@ -228,7 +251,10 @@ The following methods may be made available on collections
 - POST
 - DELETE
 
-### GET
+
+
+**[[⬆]](#TOC)**
+### <a name="GET">GET</a>
 
 The GET method is used to get an optional filtered, paged set of resources. 
 
@@ -351,8 +377,8 @@ Range: 0-10
 ]
 ```
 
-
-### POST
+**[[⬆]](#TOC)**
+### <a name="POST">POST</a>
 
 Adds a new item to the collection automatically creating an id for the new resource. The created resource will be returned.
 
@@ -422,17 +448,19 @@ Location: /user/7
 }
 ```
 
+**[[⬆]](#TOC)**
+## <a name="resourceMethods">Methods available on resources</a>
 
-## Methods available on resources
-
-The following methods may be made available on collections
+The following methods may be made available on resources
 - GET
 - HEAD
 - PUT
 - PATCH
 - DELETE
 
-### GET
+
+**[[⬆]](#TOC)**
+### <a name="rGET">GET</a>
 
 **Mandatory Request Headers**
 - Accept
@@ -541,8 +569,8 @@ Date: Fri, 15 Nov 2013 12:12:14 GMT
 }
 ```
 
-
-### DELETE
+**[[⬆]](#TOC)**
+### <a name="DELETE">DELETE</a>
 
 **Mandatory Request Headers**
 - API-Version
@@ -595,8 +623,8 @@ Date: Fri, 15 Nov 2013 12:12:14 GMT
 }
 ```
 
-
-### PUT
+**[[⬆]](#TOC)**
+### <a name="PUT">PUT</a>
 
 Adds a new item to the collection or overwrites an existing one. The created resource will be returned.
 
@@ -668,7 +696,8 @@ Location: /user/7
 
 
 
-### PATCH
+**[[⬆]](#TOC)**
+### <a name="PATCH">PATCH</a>
 
 Updates an existing item.
 
@@ -740,8 +769,8 @@ Location: /user/7
 
 
 
-
-## The OPTIONS Method
+**[[⬆]](#TOC)**
+## <a name="OPTIONS">The OPTIONS Method</a>
 
 The options request returns information about methods and headers that can be used on the given collection / resource.
 
@@ -798,12 +827,14 @@ The data in the response body describes the collection / resource and the subres
 ```
 
 
-## Filters
+**[[⬆]](#TOC)**
+## <a name="Filters">Filters</a>
 
 The filter described below may be supported by any collection. You may combine as many filters as you like. If you filter one property with mutliple filters the filters will be evaluated using the logical «and» oberator. If you want to use multiple filters using the «or» operator you must define them in multiple «Filter» headers.
 
 
-### Numbers
+**[[⬆]](#TOC)**
+### <a name="Numbers">Numbers</a>
 
 ```HTTP
 Filter: id=1
@@ -817,7 +848,8 @@ Filter: id=null
 Filter: id=notNull
 ```
 
-### Strings
+**[[⬆]](#TOC)**
+### <a name="Strings">Strings</a>
 ```HTTP
 Filter: name=fabian
 Filter: name!=felix
@@ -827,7 +859,8 @@ Filter: name=null
 Filter: name=notNull
 ```
 
-### Booleans
+**[[⬆]](#TOC)**
+### <a name="Booleans">Booleans</a>
 ```HTTP
 Filter: deleted=false
 Filter: deleted=true
@@ -835,7 +868,8 @@ Filter: deleted=null
 Filter: name=notNull
 ```
 
-### Date
+**[[⬆]](#TOC)**
+### <a name="Date">Date</a>
 
 Date properties may be filtered using the following format: «YYYY-MM-DD HH:MM:SS». The time is always bound to the resource location. If the resource i snot bound to a location the timezone of the server is used ( see date header ). You may omit any part of the date beginning at the right, so «YYYY-MM-YY» is interpreted as «YYYY-MM-YY 00:00:00» and «YYYY» is interpreted as «YYYY-01-01 00:00:00». 
 
