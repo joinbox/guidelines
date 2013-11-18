@@ -402,7 +402,7 @@ Location: /user/7
 		, tenant: 		"/user/7/tenant"
 	}
 }
-
+```
 
 
 ## Methods available on resources
