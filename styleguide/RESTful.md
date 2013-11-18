@@ -80,12 +80,24 @@ The requested content language. Most of the time this will be one of en, de, fr,
 If the server cannot satisfy the request he will respond with the **406 - Not Acceptable** status.
 
 
-Since all language specific data is stored in mapping tables between the entity and the language entity it is **not** required to submit the header. You can instead use the «Select» and «Filter» header for selecting the language data. If you use the «Accept-Language» header the service will return the resource in that specific language with the locale data included into the entity. If you use the «Select» header without the «Filter» header the service will return all locale records. Without the «Accept-Language» header the locale data will be returned, if selected, like all mppings inside an array. See the [Locale Data]() Section.
+Since all language specific data is stored in mapping tables between the entity and the language entity it is **not** required to submit the header. You can instead use the «Select» and «Filter» header for selecting the language data. If you use the «Accept-Language» header the service will return the resource in that specific language with the locale data included into the entity. If you use the «Select» header without the «Filter» header the service will return all locale records. Without the «Accept-Language» header the locale data will be returned, if selected, like all mappings inside an array. See the [Locale Data]() Section.
 
 ```HTTP
 GET /user HTTP/1.1
 Accept-Language: de, fr;q=0.9, en;q=0.8
 ```
+
+
+#### Content-Language
+
+Used for POST / PATCH & PUT request. Specifies the language in which the content is delivered in.
+
+
+```HTTP
+GET /user HTTP/1.1
+Content-Language: de, fr;q=0.9, en;q=0.8
+```
+
 
 
 #### Range
@@ -95,7 +107,7 @@ If the server cannot satisfy the request he will respond with the **416 - Reques
 
 ```HTTP
 GET /user HTTP/1.1
-Range: 0-10
+Range: 0-9
 ```
 
 
@@ -154,17 +166,43 @@ API-Version: 0.0.1
 ```
 
 
-
 ### Response Headers
 
 #### Content-Type
 
-The Content Type of the response
+The Content Type of the response, will almost always be «Application/JSON».
 
 
 ```HTTP
-GET /user HTTP/1.1
-Content-Type: Multipart/Form-Data
+HTTP/1.1 200 OK
+Content-Type: Application/JSON
+```
+
+
+#### Range
+
+Zero based resource range index. Describes the offset and length of the resources returned to the client. If the client did not specify a range the starting page of the range will be returned.
+
+The range & accept-range header must be sent in response to all GET & HEAD requests on a collection. If the server cannot satisfy the request he will respond with the **416 - Requested Range Not Satisfiable** status.
+
+```HTTP
+HTTP/1.1 200 OK
+Accept-Ranges: resources
+Content-Range: 0-9/5604
+```
+
+
+#### Content-Language
+
+If the reqeust contained an «Accept-Language» header the resource(s) will be returned using the selected language an the «Content-Language» header will be set. 
+
+```HTTP
+HTTP/1.1 200 OK
+Content-Language: en
+```
+
+
+
 ```
 
 ## Methods
@@ -194,7 +232,7 @@ Available request headers
 The example request below will do the following:
 - return the users property «id», the related tenants properties «id» and «name» and the related friends properties «id» and «name»
 - filter the user by id ( in 3, 4 ) and name ( like micha% ), see [filters]()
-- limit the result count to 11, starting at offset 0
+- limit the result count to 10, starting at offset 0
 - return the data in german
 
 *Request Headers*
@@ -203,7 +241,7 @@ GET /user HTTP/1.1
 Host: somehost:12001
 Accept: Application/JSON
 Accept-Language: de, fr;q=0.9, en;q=0.8
-Range: 0-10
+Range: 0-9
 Select: id, tenant.id, tenant.name, friends.id, friends.name
 Order: name DESC, firends.name DESC
 Filter: id=in(3,4), firstName=like('mich%25')
@@ -230,7 +268,7 @@ Range: 0-10
 			, _rel: {
 				  _self: 		"/tenant/1"
 				, _collection: 	"/tenant"
-				, _rel: 		"/user/4/tenant/1"
+				, _mapping: 	"/user/4/tenant/1"
 			}
 		}
 		, friend: [
@@ -240,7 +278,7 @@ Range: 0-10
 				, _rel: {
 					  _self: 		"/user/5"
 					, _collection: 	"/user"
-					, _rel: 		"/user/4/friend/5"
+					, _mapping: 		"/user/4/friend/5"
 				}
 			}
 			, {
@@ -249,7 +287,7 @@ Range: 0-10
 				, _rel: {
 					  _self: 		"/user/4"
 					, _collection: 	"/user"
-					, _rel: 		"/user/4/friend/4"
+					, _mapping: 		"/user/4/friend/4"
 				}
 			}
 		]
@@ -266,6 +304,11 @@ Range: 0-10
 		, tenant: {
 			  id: 4
 			, name: "events.ch"
+			, _rel: {
+				  _self: 		"/tenant/4"
+				, _collection: 	"/tenant"
+				, _mapping: 	"/user/4/tenant/4"
+			}
 		}
 		, friends: []
 		, _rel: {
@@ -286,6 +329,9 @@ Adds a new item to the collection automatically creating an id for the new resou
 Available request headers
 - Accept
 - API-Version
+- Content-Type
+- Content-Language
+- Select
 
 
 *Request Headers*
@@ -293,11 +339,9 @@ Available request headers
 GET /user HTTP/1.1
 Host: somehost:12001
 Accept: Application/JSON
-Accept-Language: de, fr;q=0.9, en;q=0.8
-Range: 0-10
+Content-Type: Multipart/Form-Data
+Ĉontent-Language: en
 Select: id, tenant.id, tenant.name, friends.id, friends.name
-Order: name DESC, firends.name DESC
-Filter: id=in(3,4), firstName=like('mich%25')
 API-Version: 0.0.1
 ```
 
@@ -306,40 +350,31 @@ API-Version: 0.0.1
 HTTP/1.1 200 OK
 Content-Type: Application/JSON
 Date: Fri, 15 Nov 2013 12:12:14 GMT
-Range: 0-10
+Ĉontent-Language: en
 ```
 
 *Response Body*
 ```Javascript
-[
-	{
+{
+	  id: 7
+	, name: "tobias"
+	, tenant: {
 		  id: 4
-		, name: "michael"
-		, tenant: {
-			  id: 1
-			, name: "default tenant"
+		, name: "events.ch"
+		, _rel: {
+			  _self: 		"/tenant/4"
+			, _collection: 	"/tenant"
+			, _mapping: 	"/user/4/tenant/4"
 		}
-		, friends: [
-			{
-				  id: 5 
-				, name: "pereg"
-			}
-			, {
-				  id: 4
-				, name: "fabian"
-			}
-		]
 	}
-	, {
-		  id: 3
-		, name: "micha"
-		, tenant: {
-			  id: 4
-			, name: "events.ch"
-		}
-		, friends: []
+	, friends: []
+	, _rel: {
+		  _self: 		"/user/7"
+		, _collection: 	"/user"
+		, friend: 		"/user/7/friend"
+		, tenant: 		"/user/7/tenant"
 	}
-]
+}
 ```
 
 
