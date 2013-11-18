@@ -1,8 +1,8 @@
 # GET /Joinbox/RESTful/Style/Guide
 
-This styleguide describes how RESTful Services should be designed. The target is to make the services available to other services and apps as simple as possible. Because of this it is very important all services use the same headers, parameters, encodings, methods and wokrflows.
+This styleguide describes how RESTful services should be designed @joinbox. All services should make use of the same custom and standard headers, status codes an request methods so that all services can interact without any custom code.
 
-Much of the functionality will be handled by the ee framework.
+Most of the functionality will be handled by the ee framework.
 
 
 ## Naming 
