@@ -822,7 +822,8 @@ Filter: name=notNull
 
 ### Date
 
-date properties may be filtered using the following format: «YYYY-MM-DD HH:MM:SS». You may omit any part from the right to the left, so is «YYYY-MM-DD HH» the equivalent of «YYYY-MM-DD HH:00:00» and «YYYY» is the equivalent of «YYYY-00-00 00:00:00».
+Date properties may be filtered using the following format: «YYYY-MM-DD HH:MM:SS». The time is always bound to the resource location. If the resource i snot bound to a location the timezone of the server is used ( see date header ). You may omit any part of the date beginning at the right, so «YYYY-MM-YY» is interpreted as «YYYY-MM-YY 00:00:00» and «YYYY» is interpreted as «YYYY-01-01 00:00:00». 
+
 
 ```HTTP
 Filter: created=2013-11-18 
