@@ -205,15 +205,15 @@ Content-Language: en
 
 ## Methods
 
-### Methods available on collections
+The following methods may be made available on collections
 
 - OPTIONS
 - GET
 - HEAD
 - POST
+- DELETE
 
-
-#### GET
+### GET
 
 The GET method is used to get an optional filtered, paged set of resources. 
 
@@ -373,7 +373,14 @@ Location: /user/7
 
 ### Methods available on resources
 
-#### GET
+The following methods may be made available on collections
+- GET
+- HEAD
+- PUT
+- PATCH
+- DELETE
+
+### GET
 
 Available request headers
 - Accept
@@ -427,7 +434,7 @@ Date: Fri, 15 Nov 2013 12:12:14 GMT
 ```
 
 
-#### DELETE
+### DELETE
 
 
 Available request headers
