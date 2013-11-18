@@ -309,6 +309,7 @@ Range: 0-10
 			, _collection: 	"/user"
 			, friend: 		"/user/4/friend"
 			, tenant: 		"/user/4/tenant"
+			, city: 		"/user/4/city"
 		}
 	}
 	, {
@@ -329,6 +330,7 @@ Range: 0-10
 			, _collection: 	"/user"
 			, friend: 		"/user/3/friend"
 			, tenant: 		"/user/3/tenant"
+			, city: 		"/user/3/city"
 		}
 	}
 ]
@@ -362,7 +364,7 @@ The example request does the following
 
 *Request Headers*
 ```HTTP
-GET /user HTTP/1.1
+POST /user HTTP/1.1
 Host: somehost:12001
 Accept: Application/JSON
 Content-Type: Multipart/Form-Data
@@ -400,6 +402,7 @@ Location: /user/7
 		, _collection: 	"/user"
 		, friend: 		"/user/7/friend"
 		, tenant: 		"/user/7/tenant"
+		, city: 		"/user/7/city"
 	}
 }
 ```
@@ -518,6 +521,7 @@ Date: Fri, 15 Nov 2013 12:12:14 GMT
 		, _collection: 	"/user"
 		, friend: 		"/user/3/friend"
 		, tenant: 		"/user/3/tenant"
+		, city: 		"/user/3/city"
 	}
 }
 ```
@@ -525,24 +529,32 @@ Date: Fri, 15 Nov 2013 12:12:14 GMT
 
 ### DELETE
 
-
-Available request headers
-- Accept
-- Accept-Language
+**Mandatory Request Headers**
 - API-Version
+- Accept
 - Select
 
+**Optional Request Headers**
+- Content-Language
 
-The example request below will do the following:
-- return the users property «id», the related tenants properties «id» and «name» and the related friends properties «id» and «name»
-- return the data in all languages
+**Mandatory Response Headers**
+- Content-Length
+- Date
+
+**Optional Response Headers**
+- Content-Language
+
+
+**Example**
+
+Deletes an user, returns the deleted user
 
 *Request Headers*
 ```HTTP
-GET /user HTTP/1.1
+DELETE /user HTTP/1.1
 Host: somehost:12001
 Accept: Application/JSON
-Select: id, tenant.id, tenant.name, friends.id, friends.name
+Select: id, name
 API-Version: 0.0.1
 ```
 
@@ -558,26 +570,158 @@ Date: Fri, 15 Nov 2013 12:12:14 GMT
 {
 	  id: 3
 	, name: "micha"
+	, _rel: {
+		  _self: 		"/user/3"
+		, _collection: 	"/user"
+		, friend: 		"/user/3/friend"
+		, tenant: 		"/user/3/tenant"
+		, city: 		"/user/3/city"
+	}
+}
+```
+
+
+### PUT
+
+Adds a new item to the collection or overwrites an existing one. The created resource will be returned.
+
+**Mandatory Request Headers**
+- Accept
+- Content-Language
+- API-Version
+- Content-Type
+
+**Optional Request Headers**
+- Select
+
+**Mandatory Response Headers**
+- Content-Language
+- Content-Length
+- Date
+- Location
+
+**Example**
+
+The example request does the following
+- insert a new item in the collection «user». Overwriting an existing resource if there is one with the same id
+- return the resource with the sub resources according to the «Select» header
+
+*Request Headers*
+```HTTP
+PUT /user/7 HTTP/1.1
+Host: somehost:12001
+Accept: Application/JSON
+Content-Type: Multipart/Form-Data
+Content-Language: en
+Select: id, tenant.id, tenant.name, friends.id, friends.name
+API-Version: 0.0.1
+```
+
+*Response Headers*
+```HTTP
+HTTP/1.1 201 OK
+Content-Type: Application/JSON
+Date: Fri, 15 Nov 2013 12:12:14 GMT
+Content-Language: en
+Location: /user/7
+```
+
+*Response Body*
+```Javascript
+{
+	  id: 7
+	, name: "tobias"
 	, tenant: {
 		  id: 4
 		, name: "events.ch"
 		, _rel: {
 			  _self: 		"/tenant/4"
 			, _collection: 	"/tenant"
-			, _mapping: 	"/user/4/tenant/4"
+			, _mapping: 	"/user/7/tenant/4"
 		}
 	}
 	, friends: []
 	, _rel: {
-		  _self: 		"/user/3"
+		  _self: 		"/user/7"
 		, _collection: 	"/user"
-		, friend: 		"/user/3/friend"
-		, tenant: 		"/user/3/tenant"
+		, friend: 		"/user/7/friend"
+		, tenant: 		"/user/7/tenant"
+		, city: 		"/user/7/city"
 	}
 }
 ```
 
 
+
+### PATCH
+
+Updates an existing item.
+
+**Mandatory Request Headers**
+- Accept
+- Content-Language
+- API-Version
+- Content-Type
+
+**Optional Request Headers**
+- Select
+
+**Mandatory Response Headers**
+- Content-Language
+- Content-Length
+- Date
+- Location
+
+**Example**
+
+The example request does the following
+- updates an existing resource.
+- return the resource with the sub resources according to the «Select» header
+
+*Request Headers*
+```HTTP
+PATCH /user/7 HTTP/1.1
+Host: somehost:12001
+Accept: Application/JSON
+Content-Type: Multipart/Form-Data
+Content-Language: en
+Select: id, tenant.id, tenant.name, friends.id, friends.name
+API-Version: 0.0.1
+```
+
+*Response Headers*
+```HTTP
+HTTP/1.1 201 OK
+Content-Type: Application/JSON
+Date: Fri, 15 Nov 2013 12:12:14 GMT
+Content-Language: en
+Location: /user/7
+```
+
+*Response Body*
+```Javascript
+{
+	  id: 7
+	, name: "tobias"
+	, tenant: {
+		  id: 4
+		, name: "events.ch"
+		, _rel: {
+			  _self: 		"/tenant/4"
+			, _collection: 	"/tenant"
+			, _mapping: 	"/user/7/tenant/4"
+		}
+	}
+	, friends: []
+	, _rel: {
+		  _self: 		"/user/7"
+		, _collection: 	"/user"
+		, friend: 		"/user/7/friend"
+		, tenant: 		"/user/7/tenant"
+		, city: 		"/user/7/city"
+	}
+}
+```
 
 
 
