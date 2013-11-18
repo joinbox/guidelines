@@ -210,7 +210,6 @@ Content-Language: en
 - OPTIONS
 - GET
 - HEAD
-- DELETE
 - POST
 
 
@@ -218,14 +217,28 @@ Content-Language: en
 
 The GET method is used to get an optional filtered, paged set of resources. 
 
-Available request headers
+
+**Mandatory Request Headers**
 - Accept
+- API-Version
+
+**Optional Request Headers**
 - Accept-Language
 - Range
-- API-Version
 - Select
 - Order
 - Filter
+
+**Mandatory Response Headers**
+- Accept-Ranges
+- Content-Range
+- Content-Length
+- Date
+- Vary
+
+**Optional Response Headers**
+- Content-Language
+
 
 The example request below will do the following:
 - return the users property «id», the related tenants properties «id» and «name» and the related friends properties «id» and «name»
@@ -251,6 +264,7 @@ API-Version: 0.0.1
 HTTP/1.1 200 OK
 Content-Type: Application/JSON
 Date: Fri, 15 Nov 2013 12:12:14 GMT
+Content-Language: de
 Range: 0-10
 ```
 
@@ -338,7 +352,45 @@ GET /user HTTP/1.1
 Host: somehost:12001
 Accept: Application/JSON
 Content-Type: Multipart/Form-Data
-Ĉontent-Language: en
+Content-Language: en
+Select: id, tenant.id, tenant.name, friends.id, friends.name
+API-Version: 0.0.1
+```
+
+*Response Headers*
+```HTTP
+HTTP/1.1 201 OK
+Content-Type: Application/JSON
+Date: Fri, 15 Nov 2013 12:12:14 GMT
+Content-Language: en
+Location: /user/7
+```
+
+
+
+
+
+
+### Methods available on resources
+
+#### GET
+
+Available request headers
+- Accept
+- Accept-Language
+- API-Version
+- Select
+
+
+The example request below will do the following:
+- return the users property «id», the related tenants properties «id» and «name» and the related friends properties «id» and «name»
+- return the data in all languages
+
+*Request Headers*
+```HTTP
+GET /user HTTP/1.1
+Host: somehost:12001
+Accept: Application/JSON
 Select: id, tenant.id, tenant.name, friends.id, friends.name
 API-Version: 0.0.1
 ```
@@ -348,14 +400,13 @@ API-Version: 0.0.1
 HTTP/1.1 200 OK
 Content-Type: Application/JSON
 Date: Fri, 15 Nov 2013 12:12:14 GMT
-Ĉontent-Language: en
 ```
 
 *Response Body*
 ```Javascript
 {
-	  id: 7
-	, name: "tobias"
+	  id: 3
+	, name: "micha"
 	, tenant: {
 		  id: 4
 		, name: "events.ch"
@@ -367,14 +418,68 @@ Date: Fri, 15 Nov 2013 12:12:14 GMT
 	}
 	, friends: []
 	, _rel: {
-		  _self: 		"/user/7"
+		  _self: 		"/user/3"
 		, _collection: 	"/user"
-		, friend: 		"/user/7/friend"
-		, tenant: 		"/user/7/tenant"
+		, friend: 		"/user/3/friend"
+		, tenant: 		"/user/3/tenant"
 	}
 }
 ```
 
+
+#### DELETE
+
+
+Available request headers
+- Accept
+- Accept-Language
+- API-Version
+- Select
+
+
+The example request below will do the following:
+- return the users property «id», the related tenants properties «id» and «name» and the related friends properties «id» and «name»
+- return the data in all languages
+
+*Request Headers*
+```HTTP
+GET /user HTTP/1.1
+Host: somehost:12001
+Accept: Application/JSON
+Select: id, tenant.id, tenant.name, friends.id, friends.name
+API-Version: 0.0.1
+```
+
+*Response Headers*
+```HTTP
+HTTP/1.1 200 OK
+Content-Type: Application/JSON
+Date: Fri, 15 Nov 2013 12:12:14 GMT
+```
+
+*Response Body*
+```Javascript
+{
+	  id: 3
+	, name: "micha"
+	, tenant: {
+		  id: 4
+		, name: "events.ch"
+		, _rel: {
+			  _self: 		"/tenant/4"
+			, _collection: 	"/tenant"
+			, _mapping: 	"/user/4/tenant/4"
+		}
+	}
+	, friends: []
+	, _rel: {
+		  _self: 		"/user/3"
+		, _collection: 	"/user"
+		, friend: 		"/user/3/friend"
+		, tenant: 		"/user/3/tenant"
+	}
+}
+```
 
 
 
