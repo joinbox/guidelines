@@ -218,25 +218,25 @@ Content-Language: en
 The GET method is used to get an optional filtered, paged set of resources. 
 
 
-**Mandatory Request Headers**
+*Mandatory Request Headers*
 - Accept
 - API-Version
 
-**Optional Request Headers**
+*Optional Request Headers*
 - Accept-Language
 - Range
 - Select
 - Order
 - Filter
 
-**Mandatory Response Headers**
+*Mandatory Response Headers*
 - Accept-Ranges
 - Content-Range
 - Content-Length
 - Date
 - Vary
 
-**Optional Response Headers**
+*Optional Response Headers*
 - Content-Language
 
 
