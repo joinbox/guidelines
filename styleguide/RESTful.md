@@ -234,13 +234,14 @@ The GET method is used to get an optional filtered, paged set of resources.
 - Content-Range
 - Content-Length
 - Date
-- Vary
 
 **Optional Response Headers**
 - Content-Language
 
 
-The example request below will do the following:
+**Example**
+
+The example request does the following
 - return the users property «id», the related tenants properties «id» and «name» and the related friends properties «id» and «name»
 - filter the user by id ( in 3, 4 ) and name ( like micha% ), see [filters]()
 - limit the result count to 10, starting at offset 0
@@ -319,7 +320,7 @@ Range: 0-10
 			, _rel: {
 				  _self: 		"/tenant/4"
 				, _collection: 	"/tenant"
-				, _mapping: 	"/user/4/tenant/4"
+				, _mapping: 	"/user/3/tenant/4"
 			}
 		}
 		, friends: []
@@ -338,13 +339,26 @@ Range: 0-10
 
 Adds a new item to the collection automatically creating an id for the new resource. The created resource will be returned.
 
-Available request headers
+**Mandatory Request Headers**
 - Accept
+- Content-Language
 - API-Version
 - Content-Type
-- Content-Language
+
+**Optional Request Headers**
 - Select
 
+**Mandatory Response Headers**
+- Content-Language
+- Content-Length
+- Date
+- Location
+
+**Example**
+
+The example request does the following
+- insert a new item in the colelction «user» with a new automatically created id
+- return the resource with the sub resources according to the «Select» header
 
 *Request Headers*
 ```HTTP
@@ -366,12 +380,32 @@ Content-Language: en
 Location: /user/7
 ```
 
+*Response Body*
+```Javascript
+{
+	  id: 7
+	, name: "tobias"
+	, tenant: {
+		  id: 4
+		, name: "events.ch"
+		, _rel: {
+			  _self: 		"/tenant/4"
+			, _collection: 	"/tenant"
+			, _mapping: 	"/user/7/tenant/4"
+		}
+	}
+	, friends: []
+	, _rel: {
+		  _self: 		"/user/7"
+		, _collection: 	"/user"
+		, friend: 		"/user/7/friend"
+		, tenant: 		"/user/7/tenant"
+	}
+}
 
 
 
-
-
-### Methods available on resources
+## Methods available on resources
 
 The following methods may be made available on collections
 - GET
@@ -382,14 +416,23 @@ The following methods may be made available on collections
 
 ### GET
 
-Available request headers
+**Mandatory Request Headers**
 - Accept
-- Accept-Language
 - API-Version
+
+**Optional Request Headers**
+- Accept-Language
 - Select
 
+**Mandatory Response Headers**
+- Content-Length
+- Date
 
-The example request below will do the following:
+**Optional Response Headers**
+- Content-Language
+
+**Example**
+The example request will do the following:
 - return the users property «id», the related tenants properties «id» and «name» and the related friends properties «id» and «name»
 - return the data in all languages
 
@@ -398,7 +441,7 @@ The example request below will do the following:
 GET /user HTTP/1.1
 Host: somehost:12001
 Accept: Application/JSON
-Select: id, tenant.id, tenant.name, friends.id, friends.name
+Select: id, tenant.id, tenant.name, friends.id, friends.name, city.zip, city.name
 API-Version: 0.0.1
 ```
 
@@ -414,13 +457,59 @@ Date: Fri, 15 Nov 2013 12:12:14 GMT
 {
 	  id: 3
 	, name: "micha"
+	, city: {
+		  zip: 3011
+		, name: [
+			{ 
+			  	  language: "de"
+			  	, name: "Bern" 
+			  	, _rel: {
+					  _self: 		"/language/48"
+					, _collection: 	"/language"
+					, _mapping: 	"/city/3847/language/2"
+				}
+			}
+			, { 
+			  	  language: "en"
+			  	, name: "Bern" 
+			  	, _rel: {
+					  _self: 		"/language/48"
+					, _collection: 	"/language"
+					, _mapping: 	"/city/3847/language/1"
+				}
+			}
+			, { 
+			  	  language: "it"
+			  	, name: "Berna" 
+			  	, _rel: {
+					  _self: 		"/language/48"
+					, _collection: 	"/language"
+					, _mapping: 	"/city/3847/language/4"
+				}
+			}
+			, { 
+			  	  language: "fr"
+			  	, name: "Berne" 
+			  	, _rel: {
+					  _self: 		"/language/48"
+					, _collection: 	"/language"
+					, _mapping: 	"/city/3847/language/3"
+				}
+			}
+		]
+		, _rel: {
+			  _self: 		"/city/48"
+			, _collection: 	"/city"
+			, _mapping: 	"/user/3/city/48"
+		}
+	}
 	, tenant: {
 		  id: 4
 		, name: "events.ch"
 		, _rel: {
 			  _self: 		"/tenant/4"
 			, _collection: 	"/tenant"
-			, _mapping: 	"/user/4/tenant/4"
+			, _mapping: 	"/user/3/tenant/4"
 		}
 	}
 	, friends: []
