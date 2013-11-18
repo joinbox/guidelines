@@ -21,18 +21,17 @@ Most of the functionality will be handled by the ee framework.
 		1. [API-Version](#API-Version)
 	1. [Response Headers](#responseHeaders)
 		1. [Content-Type](#cType)
-		1. [Content-Range / Accept-Range](#)
+		1. [Content-Range / Accept-Range](#ranges)
 		1. [Content-Language](#cLanguage)
-1. [Methods](#Methods)
-	1. [Methods on Collections](#collectionMethods)
-		1. [GET](#GET)
-		1. [POST](#POST)
-	1. [Methods on Resources](#resourceMethods)
-		1. [GET](#rGET)
-		1. [DELETE](#DELETE)
-		1. [PUT](#PUT)
-		1. [PATCH](#PATCH)
-	1. [OPTIONS](#OPTIONS)
+1. [Methods on Collections](#collectionMethods)
+	1. [GET](#GET)
+	1. [POST](#POST)
+1. [Methods on Resources](#resourceMethods)
+	1. [GET](#rGET)
+	1. [DELETE](#DELETE)
+	1. [PUT](#PUT)
+	1. [PATCH](#PATCH)
+1. [OPTIONS Method](#OPTIONS)
 1. [Filters](#Filters)
 	1. [Numbers](#Numbers)
 	1. [Strings](#Strings)
@@ -229,7 +228,7 @@ Content-Range: 0-9/5604
 
 
 **[[⬆]](#TOC)**
-#### <a name="cLanguages">Content-Language</a>
+#### <a name="cLanguage">Content-Language</a>
 
 If the reqeust contained an «Accept-Language» header the resource(s) will be returned using the selected language an the «Content-Language» header will be set. 
 
