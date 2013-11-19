@@ -23,6 +23,7 @@ Most of the functionality will be handled by the ee framework.
 		1. [Content-Type](#cType)
 		1. [Content-Range / Accept-Range](#ranges)
 		1. [Content-Language](#cLanguage)
+		1. [Location](#cLocation) 
 1. [Methods on Collections](#collectionMethods)
 	1. [GET](#GET)
 	1. [POST](#POST)
@@ -238,7 +239,7 @@ Content-Language: en
 ```
 
 **[[⬆]](#TOC)**
-#### <a name="cLanguage">Location</a>
+#### <a name="cLocation">Location</a>
 
 If a new resource was created, the Location-Response-Header locates the new created resource
 
