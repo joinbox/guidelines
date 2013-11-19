@@ -43,7 +43,7 @@ Most of the functionality will be handled by the ee framework.
 
 - **Collection**: A collection is a collection of resources like users, events or venues
 - **Resource**: A resource is a single item of a collection, like one event or one user
-- **Request**: Method: A HTTP request method: GET, POST, DELETE, OPTIONS, HEAD, PUT, PATCH
+- **Request Method**: A HTTP request method: GET, POST, DELETE, OPTIONS, HEAD, PUT, PATCH
 - **Headers**: Stadard HTTP request / response headers 
 - **Body**: HTTP request / response body
 - **Status**: HTTP response status code like 200, 400 or 500
