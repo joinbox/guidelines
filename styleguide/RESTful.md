@@ -230,13 +230,22 @@ Content-Range: 0-9/5604
 **[[⬆]](#TOC)**
 #### <a name="cLanguage">Content-Language</a>
 
-If the reqeust contained an «Accept-Language» header the resource(s) will be returned using the selected language an the «Content-Language» header will be set. 
+If the request contained an «Accept-Language» header the resource(s) will be returned using the selected language an the «Content-Language» header will be set. 
 
 ```HTTP
 HTTP/1.1 200 OK
 Content-Language: en
 ```
 
+**[[⬆]](#TOC)**
+#### <a name="cLanguage">Location</a>
+
+If a new resource was created, the Location-Response-Header locates the new created resource
+
+```HTTP
+HTTP/1.1 200 OK
+Location: /user/1
+```
 
 
 **[[⬆]](#TOC)**
