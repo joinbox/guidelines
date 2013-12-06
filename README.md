@@ -7,7 +7,8 @@
 
 ##### For javascript Developers
 
-- [Javascript Styleguide](styleguide/javascript.md)
+- [Javascript Styleguide](/styleguide/javascript.md)
+- [Testing / CI Guidelines](/CI/Readme.md)
 - [Node.js Styleguide](/styleguide/node.md)
 - [Joinbox Node.js Modules](/styleguide/ee-modules.md)
 
