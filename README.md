@@ -10,6 +10,7 @@
 - [Javascript Styleguide](/styleguide/javascript.md)
 - [Testing / CI Guidelines](/CI/Readme.md)
 - [Node.js Styleguide](/styleguide/node.md)
+- [bookshelfjs](/node.js/bookshelf.md)
 - [Joinbox Node.js Modules](/styleguide/ee-modules.md)
 
 
