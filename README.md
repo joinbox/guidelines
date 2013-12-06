@@ -8,7 +8,7 @@
 ##### For javascript Developers
 
 - [Javascript Styleguide](/styleguide/javascript.md)
-- [Testing / CI Guidelines](/CI/Readme.md)
+- [Testing / CI Guidelines](/styleguide/ci.md)
 - [Node.js Styleguide](/styleguide/node.md)
 
 
