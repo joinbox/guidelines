@@ -341,7 +341,8 @@ HTTP/1.1 200 OK
 Content-Type: Application/JSON
 Date: Fri, 15 Nov 2013 12:12:14 GMT
 Content-Language: de
-Range: 0-10
+Accept-Ranges: 0-9
+Content-Range 0-2
 ```
 
 *Response Body*
