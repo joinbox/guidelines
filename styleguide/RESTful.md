@@ -129,7 +129,7 @@ Used for POST / PATCH & PUT request. Specifies the language in which the content
 
 ```HTTP
 GET /user HTTP/1.1
-Content-Language: de, fr;q=0.9, en;q=0.8
+Content-Language: de
 ```
 
 
