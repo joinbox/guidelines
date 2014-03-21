@@ -202,7 +202,7 @@ CREATE TABLE eventLocale (
 
 ## Datetime & Timestamp
 
-Always use the datetime type for resources bound to a location liek an event. Use the timestamp type for resources which are location independent.
+Always use the datetime (without timezone) type for resources bound to a location like an event. Use the timestamp type (with timezone) for resources which are location independent.
 
 
 
