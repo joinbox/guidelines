@@ -1,4 +1,6 @@
-# Connect to a VPC with pfsense 2.1 via IPSec using BGP
+# Connect to a VPC with pfsense 2.1 via IPSec using BGP (two tunnels)
+
+## Requirements: as public IP only used for that service.
 
 ## Example Setup
 
@@ -57,6 +59,26 @@ Install [pfsense](https://www.pfsense.org/) version > 2.1 on any host with at le
 5. Add a neighbor for each tunnel: The IP (Neighbor) is specified in the config file under «Inside IP Addresses», «Virtual Private Gateway» (somehting like «169.254.254.61»). Set the group to «MyVPC».
 
 If you edit the raw config you must add a newline at the end of the file or else the bgp deamon will not be able to load the config.
+
+
+
+### Configure IPsec
+1. Navigate to «VPN», «IPsec», «Tunels» Tab
+2. Add a new Tunnel (do this twice using the relevant part of the config file):
+  - Interface: WAN
+  - Remote gateway: The remote gateway IP is specified in the config file under «Outside IP Addresses», «Virtual Private Gateway» (somehting like «87.238.85.42»)
+  - Authentication method: Mutual PSK
+  - Negotiation mode: main
+  - My identifier: My IP address
+  - Peer identifier: Peer IP address
+  - Pre-Shared Key: The Pre-Shared Key is specified in the config file under «Configure the IKE SA as follows», «Pre-Shared Key» (somehting like «fdg876asfbawe98r7nds9f76afnas0f»)
+  - Policy Generation: Default
+  - Proposal Checking: Default
+  - Encryption algorithm: AES 128 Bits
+  - Hash algorithm: SHA1
+  - DH key group: 2 (1024 bit)
+  - Lifetime: 28800
+  - NAT Traversal: Enable
 
 
 
