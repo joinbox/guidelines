@@ -36,7 +36,10 @@ Install [pfsense](https://www.pfsense.org/) version > 2.1 on any host with at le
 
 1. Open the downloaded configuration file, it contains two sections. Each section is for one tunnel. 
 2. Navigate to «Firewall», «Virtual IPs»
-3. Add a new Virtual IP for each tunnel. The IP is specified in the config file under «Inside IP Addresses», «Customer Gateway» (somehting like «169.254.254.62/30»)
+3. Add a new Virtual IP for each tunnel. The IP is specified in the config file under «Inside IP Addresses», «Customer Gateway» (somehting like «169.254.254.62/30»). 
+  - Type: IP Alias
+  - Interface: WAN
+
 
 
 ### Set up Routing
