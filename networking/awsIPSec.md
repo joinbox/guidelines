@@ -83,7 +83,20 @@ If you edit the raw config you must add a newline at the end of the file or else
   - Lifetime: 28800
   - NAT Traversal: Enable
 
-
+3. Add for every tunnel at least 2 phase two entries. Every phase two entry must have the following settings:
+  - Mode: Tunnel IPv4
+  - Local Network: 
+    - Type: Network
+    - For the first phase 2 entry of every tunnel: The Network is specified in the config file under «Inside IP Addresses», «Customer Gateway» (somehting like «169.254.254.62/30»)
+    - For every subnet that should be routed through the tunnel: Your local Network (10.0.0.0/16)
+  - Remote Network: Network
+    - Type: Network 
+    - For the first phase 2 entry of every tunnel: The Network is specified in the config file under «Inside IP Addresses», «Virtual Private Gateway» (somehting like «169.254.254.62/30»)
+    - For every subnet that should be routed through the tunnel: The remote Network (10.100.0.0/16)
+  - Protocol: ESP
+  - Encryption alogrythms: AES 128 Bit (uncheck others)
+  - Hash algorithms: SHA1 only
+  - PFS key Group: 2
 
 
 
