@@ -141,8 +141,14 @@ If the server cannot satisfy the request he will respond with the **416 - Reques
 
 ```HTTP
 GET /user HTTP/1.1
-Range: 0-9
-(Range: resources = 0-n)
+Range: 0-10
+(offset-limit)
+```
+
+```HTTP
+Example: 10 entries on page
+page1: range: 0-10
+page2: range: 10-20
 ```
 
 **[[⬆]](#TOC)**
