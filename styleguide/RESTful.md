@@ -142,14 +142,11 @@ If the server cannot satisfy the request he will respond with the **416 - Reques
 ```HTTP
 GET /user HTTP/1.1
 Range: 0-10
-(offset-limit)
 ```
 
-```HTTP
-Example: 10 entries on page
-page1: range: 0-10
-page2: range: 10-20
-```
+Example: 10 entries on page:
+- page1: range: 0-10
+- page2: range: 10-20
 
 **[[⬆]](#TOC)**
 #### <a name="Content-Type">Content-Type</a>
@@ -157,7 +154,7 @@ page2: range: 10-20
 The content type of the payload on requests with body ( POST, PATCH, PUT ). Will most of the time be «Multipart/Form-Data»
 
 ```HTTP
-GET /user HTTP/1.1
+POST /user HTTP/1.1
 Content-Type: Multipart/Form-Data
 ```
 
@@ -181,7 +178,7 @@ If the server cannot satisfy the request he will respond with the **461 - Filter
 
 ```HTTP
 GET /user HTTP/1.1
-Filter: id=in(3,4), firstName=like('mich%25')
+Filter: id=in(3,4), firstName=like('mich%25'), (startdate>2014-08-15|(startdate<2014-08-15,enddate>2014-08-15))
 ```
 
 **[[⬆]](#TOC)**
