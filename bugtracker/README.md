@@ -16,7 +16,7 @@ How would you describe the bug using approximately 10 words? This is the first p
 - Good: "Cancelling a File Copy dialog crashes File Manager"
 - Bad: "Software crashes"
 
-- Good: "Down-arrow scrolling doesn't work in <textarea> styled with overflow:hidden"
+- Good: "Down-arrow scrolling doesn't work in < textarea> styled with overflow:hidden"
 - Bad: "Browser should work with my web site"
 
 
