@@ -206,18 +206,21 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
     ````javascript
     // bad
     if (_.isUndefined(foo)) {}
+    
     // good
     if (foo === undefined) {}
     
     // bad
     myXHRLibrary.makeXHR('api')
         .then((status, body, headers) => console.log(status));
+    
     // good – use polyfill for old browsers
     fetch('api')
         .then((data) => console.log(data.status));
     
     // bad
     const element = $('.elementClass');
+    
     // good
     const element = document.getElementsByClassName('.elementClass');
     
