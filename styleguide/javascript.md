@@ -27,10 +27,32 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
         with this, you would get nowhere fast.`;
     ````
     
-- 7.1 You may also use function expressions – but know what you are doing (hoisting)
+- 7.1 You may also use function declarations – but know what you are doing (hoisting)
     ````javascript
-    // also good
+    // good
     function foo() {
+    }
+    ````
+    
+    You may use function expressions but not named function expressions with two separate names. 
+    The only reason for using named function expression is that they are easier debuggable. 
+    node, by default, creates named function expressions out of function expressions. babel 
+    does this too.
+    ````javascript
+    // good
+    const sayHi = function() {
+    }
+    ````
+    
+    ````javascript
+    // barely okay
+    const sayHi = function sayHi() {
+    }
+    ````
+    
+    ````javascript
+    // bad
+    const sayHi = function hi() {
     }
     ````
     
@@ -74,7 +96,7 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
     }
     ````
 
-- 19.8 If it improves readability and code structuring, you may use extensive blank lines in and outside of (long) blocks.
+- 19.8 If it improves readability and code structuring, you may use extensive blank lines in and outside of (long) blocks. No empty lines before closing curly braces.
 
     ````javascript
     // good
@@ -91,7 +113,6 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
             .forEach((item) => {
                 this.collection.addVisible(item);
             });
-        
     }
     ````
 
@@ -188,7 +209,7 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
     }
     ````
     
-    Async/await are ES2017 – use them.
+    Async/await are ES2017 – use and understand them.
 
 
 
@@ -199,9 +220,7 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
 - Don't use third party libraries where there are native JavaScript solutions. Prefer polyfills over libraries. 
 
     > Why? Because libraries tend to contain more bugs than pure JavaScript.
-
     > Why? Because libraries tend to require updates that need testing. 
-
     > Why? Because libraries tend to lose support with time.
 
     ````javascript
@@ -242,9 +261,33 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
         .then((data, err) => data);
     }
     ````
+    
+    // bad
+    const leftPad = require('leftpad');
+    
+    class Something {
+        leftPad(input, length, char = ' ') {
+            return leftPad(input, length, char);
+        }
+    }
+
+    // good
+    class Something {
+        leftPad(input, length, char = ' ') {
+            if (input.length >= length) return input;
+            else return char.repeat(length - input.length)+input;
+        }
+    }
+    ````
 
  - Only use libraries with licenses that match the project, that are well supported, well tested and have a large user base.
  - Install libraries through package managers. Prefer npm over bower. 
+
+
+### Don't use babel for node
+
+ - Never compile or transpile sources for node
+
 
 ### Path Forward
 
