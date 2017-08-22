@@ -98,6 +98,30 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
     }
     ````
 
+- 20.1 Leading commas: Yep.
+
+    > Why? Because it's easy to read.
+
+    > Why? Because you can remove a line and instantly recognize problems with commas.
+
+    > Why? Because trailing commas cause [problems](https://github.com/airbnb/javascript/blob/es5-deprecated/es5/README.md#commas) in legacy browsers.
+
+    ````javascript
+    // good
+    const story = [
+        once
+        , upon
+        , aTime
+    ];
+
+    // bad
+    const story = [
+        once,
+        upon,
+        aTime,
+    ];
+    ````
+
 - 23.4 You shall use leading underscores to mark functions or variables as private. They should not be accessed from the outside.
 
     ````javascript
@@ -195,7 +219,7 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
     // bad
     const element = $('.elementClass');
     // good
-    const element = document.getElementsByClassName('.elementClass);
+    const element = document.getElementsByClassName('.elementClass');
     
     // bad
     function doTwoThings() {    
