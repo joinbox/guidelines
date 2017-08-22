@@ -52,12 +52,10 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
     // TODO: Add radix
     const total = parseInt(value);
 
-
     // bad
     const value = '15';
     // FIXME: parseInt sometimes returns wrong value
     const total = parseInt(value);
-    ````
 
     // okay
     const value = '15';
@@ -86,7 +84,6 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
         fetch('/api')
             .then((data) => data.json());
             .then((json) => this.data = json);
-        
         
         // Work with data
         this.data
@@ -123,6 +120,10 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
     ````
 
 - 23.4 You shall use leading underscores to mark functions or variables as private. They should not be accessed from the outside.
+
+    > Why? Because it allows for clearer interfaces and internal changes that don't break the component's functionality. 
+
+    > Why? Because private fields [are coming](https://tc39.github.io/proposal-private-fields/) but not yet here.
 
     ````javascript
     // good
