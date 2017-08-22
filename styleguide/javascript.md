@@ -193,7 +193,7 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
         .then((data) => console.log(data.status));
     
     // bad
-    const element = $('.elementClass);
+    const element = $('.elementClass');
     // good
     const element = document.getElementsByClassName('.elementClass);
     
