@@ -3,7 +3,7 @@
 
 ##### For GIT Users
 
-- [RESTful Styleguide](/styleguide/git.md)
+- [GIT Branching Model](styleguide/git.md)
 
 
 ##### For javascript Developers
