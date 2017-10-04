@@ -18,13 +18,18 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
     }];
     ````
 
-- 6.2 You may also use template strings for long strings: 
+- 6.2 You may also use template strings or string concatenation for long strings: 
 
     ````javascript
-    //good
+    // good
     const errorMessage = `This is a super long error that was thrown because 
         of Batman. When you stop to think about how Batman had anything to do
         with this, you would get nowhere fast.`;
+        
+    // good  
+    const errorMessage = 'This is a super long error that was thrown because ' +
+        'of Batman. When you stop to think about how Batman had anything to do ' +
+        'with this, you would get nowhere fast.';
     ````
     
 - 7.1 You may also use function declarations – but know what you are doing (hoisting)
@@ -56,18 +61,51 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
     }
     ````
     
-- 16.2 You may use line breaks before `else` statements:
+
+- 10.1 Modules: don't use modules for node if node doesn't support them natively.
+    
+
+- 17.1 In case your control statement (if, while etc.) gets too long or exceeds the maximum line length, each (grouped) condition could be put into a new line. It’s up to you whether the logical operator should begin or end the line.
+
+    In addition to the airbnb rules this is also ok:
+
     ````javascript
-    // also good
-    if(test) {
+    // good
+    if ((foo === 123 || bar === "abc") &&
+        doesItLookGoodWhenItBecomesThatLong() &&
+        isThisReallyHappening()
+    ) {
         thing1();
     }
-    else {
-        thing2();
+    ````
+    
+- 18.1 Multiline comments using `//` are ok. Function, Class and Block comments must have the follwoing format:
+    
+    ````javascript
+    /**
+    * the best class ever!
+    */
+    class Person {
+
+
+        /**
+        * tells the person 'hi'
+        *
+        * @private
+        * @param {string} personName name of the person to say 'hi' to
+        */
+        sayHi(personName) {
+
+            // tell the person, which should
+            // be an awesome person, hello.
+            // and be sure to ...
+            console.log(`Hi ${personName}`);
+        }
     }
     ````
 
-- 18.4 Don't use FIXME comments – fix the problem instead. TODO may be used when it helps on a feature that will be implemented later. 
+
+- 18.4 Don't use FIXME comments – fix the problem instead. TODO may be used while delveloping a feature. Pull requests or code that is going to be shipped to production should **never** contain a TODO.
     ````javascript
     // bad
     const value = '15';
@@ -78,11 +116,6 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
     const value = '15';
     // FIXME: parseInt sometimes returns wrong value
     const total = parseInt(value);
-
-    // okay
-    const value = '15';
-    // TODO: More detailed error messages when value may be set by the users
-    const total = parseInt(value, 10);
     ````
 
 - 19.1 Use soft tabs set to 4 spaces.
@@ -96,7 +129,7 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
     }
     ````
 
-- 19.8 If it improves readability and code structuring, you may use extensive blank lines in and outside of (long) blocks. No empty lines before closing curly braces.
+- 19.8 If it improves readability and code structuring, you may use extensive blank lines in and outside of (long) blocks.
 
     ````javascript
     // good
@@ -114,30 +147,6 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
                 this.collection.addVisible(item);
             });
     }
-    ````
-
-- 20.1 Leading commas: Yep.
-
-    > Why? Because it's easy to read.
-
-    > Why? Because you can remove a line and instantly recognize problems with commas.
-
-    > Why? Because trailing commas cause [problems](https://github.com/airbnb/javascript/blob/es5-deprecated/es5/README.md#commas) in legacy browsers.
-
-    ````javascript
-    // good
-    const story = [
-        once
-        , upon
-        , aTime
-    ];
-
-    // bad
-    const story = [
-        once,
-        upon,
-        aTime,
-    ];
     ````
 
 - 23.4 You shall use leading underscores to mark functions or variables as private. They should not be accessed from the outside.
@@ -178,23 +187,6 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
     }
     ````
 
-- 23.6 Use camelCase for all file names
-
-    > Why? Because most libraries do so.
-
-    ````javascript
-    // good (class)
-    import ClassName from './className';
-    ````
-
-- 23.8 Use camelCase for exported objects
-
-    > Why? Because [objects are camelCased](https://github.com/airbnb/javascript#naming--camelCase)
-
-    ````javascript
-    // good (class)
-    import ClassName from './className';
-    ````
 
 - 28.2 You may use decorators (even though it's a Stage 2 draft)
 
@@ -260,7 +252,6 @@ Use Airbnb's [style  guide](https://github.com/airbnb/javascript)
         ]
         .then((data, err) => data);
     }
-    ````
     
     // bad
     const leftPad = require('leftpad');
