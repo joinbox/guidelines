@@ -26,13 +26,13 @@ Components provide a way cleaner interface than directives did in earlier versio
 
 > **To Clarify:** ~~Where do we manipulate the DOM in components?~~ DOM manipulations happen during the `$postLink` lifecycle hook.  
 
-1. Forget about scope inheritance! It is evil. All directives have an isolated scope! All the data that is passed into the component is clearly defined in the `bindings` section of the components definition.
+1. Forget about scope inheritance! It is evil. All components have an isolated scope! All the data that is passed into the component is clearly defined in the `bindings` section of the components definition.
 2. Create services to share logic and load data if necessary.
 
 ### Structure
 Reworking a codebase towards components brings up an old discussion about how to structure Angular code. Some prefer to group the code together based on their type of content (_e.g._ having a `service` folder, a `directive` folder ...). 
 
-Even though this might be subjective I'd go for a functional/domain based structure:
+Even though this might be subjective, the most :
 
 	- `app.js`
 	- `/user`
@@ -64,7 +64,7 @@ class MyComponentController {
     constructor($timeout, someService) {
         // assign the dependencies to your controller
         this.$timeout = $timeout;
-		  this.someService = someService;
+        this.someService = someService;
     }
     /**
      * $onInit is called if the bindings are resolved.
@@ -115,8 +115,8 @@ Bindings in components are defined analogous to the previous scopes in directive
      *   oneWayBinding: '<aOneWayBoundProperty'
      */
     bindings: {
-		  oneWayBinding: '<',
-		  twoWayBinding: '=',
+		oneWayBinding: '<',
+		twoWayBinding: '=',
         expressionBinding: '&',
         aString: '@',
     }
