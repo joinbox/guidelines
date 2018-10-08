@@ -10,12 +10,13 @@ The following sections describe on how to handle, refactor and create Angular co
 
 Let's start with an overview (please see the other sections if you're not aware of the concepts):
 
-1. If your project allows it, use `ES6` (precompile your code if necessary).
-2. Name your files consistently!
-3. Bundle logic (especially shared logic) in services!
-4. Write components (not directives)!
-5. Use bindings wisely especially in presence of deep nesting and loops!
-6. Use `ng-if` as guard for view rendering and to control its timing!
+  1. If your project allows it, use `ES6` (precompile your code if necessary).
+  1. Name your files consistently!
+  1. Bundle logic (especially shared logic) in services!
+  1. Write components (not directives)!
+  1. Handle errors in your components!
+  1. Use bindings wisely especially in presence of deep nesting and loops!
+  1. Use `ng-if` as guard for view rendering and to control its timing!
 
 ### Components
 In general, Angular supports  a variety of [concepts](https://docs.angularjs.org/guide/concepts). The most important one for our legacy code are [components](https://docs.angularjs.org/guide/component). They are the most basic common denominator of Angular 1.x.x and >2.0.0.
@@ -32,17 +33,17 @@ Components provide a way cleaner interface than directives did in earlier versio
 ### Structure
 Reworking a codebase towards components brings up an old discussion about how to structure Angular code. Some prefer to group the code together based on their type of content (_e.g._ having a `service` folder, a `directive` folder ...). 
 
-Even though this might be subjective, the most :
+Even though this might be subjective, the most:
 
-	- `app.js`
-	- `/user`
-		- `userProfile.component.js`
-		- `userProfile.template.html`
-		- `userProfileForm.component.js`
-		- `userProfileForm.template.html`
-		- `userService.service.js`
-		- `userStatusFilter.filter.js`
-- `/common`
+  - `app.js`
+  - `/user`
+    - `userProfile.component.js`
+    - `userProfile.template.html`
+    - `userProfileForm.component.js`
+    - `userProfileForm.template.html`
+    - `userService.service.js`
+    - `userStatusFilter.filter.js`
+  - `/common`
 
 How and where your application is served from depends on the project and the rest of the tech stack.
 
@@ -58,7 +59,7 @@ Components (_i.e._ their controllers) have a well defined [interface for lifecyc
 
 ```Javascript
 class MyComponentController {
-	  /**
+	/**
      * Dependencies defined in $inject are passed here.
      */
     constructor($timeout, someService) {
@@ -69,7 +70,7 @@ class MyComponentController {
     /**
      * $onInit is called if the bindings are resolved.
      * Even though Angular will not `await` your $onInit method you can use async here to simplify your code and control the timing using a guard.
-	   */
+	 */
     async $onInit() {
        const requiredData = await this.someService.loadData();
        // Prepare data.
@@ -80,6 +81,7 @@ class MyComponentController {
        });
     }
 }
+
 /**
  * Define your dependencies in the $inject property as an array of strings.
  * This makes the injection safe if you minify your sourcecode (string content cannot be minified, variable names can and will be renamed).
@@ -91,14 +93,29 @@ MyComponentController.$inject = [
 ```
 
 ```HTML
-<!-- use the entity as guard to prevent the view from unneccesary rendering --> 
-<div class="my-component-container" ng-if="$ctrl.myImportantEntity">
-</div>
+  <!-- use the entity as guard to prevent the view from unneccesary rendering -->
+    <div class="my-component-container" ng-if="$ctrl.myImportantEntity">
+  </div>
 ```
 
-1. Go the extra mile and properly pass in the dependencies via an array of strings to avoid problems due to preprocessing. Also keep the naming between the controller's constructor and the `$inject` property consistent (do not rename the injections).
-2. Assign data consumed by the view at the end of your `$onInit` method to the controller. It makes the source of the data more predictable and avoids view rendering in an incomplete state (_i.e._ when not all the necessary data is present yet).
-3. At the end of your `$onInit` method you might have to trigger a digest cycle since the bindings within your view might have stabilised and no further updates are performed.
+  1. Go the extra mile and properly pass in the dependencies via an array of strings to avoid problems due to preprocessing. Also keep the naming between the controller's constructor and the `$inject` property consistent (do not rename the injections).
+  1. Assign data consumed by the view at the end of your `$onInit` method to the controller. It makes the source of the data more predictable and avoids view rendering in an incomplete state (_i.e._ when not all the necessary data is present yet).
+  1. At the end of your `$onInit` method you might have to trigger a digest cycle since the bindings within your view might have stabilised and no further updates are performed.
+
+> **Note:** Handle your errors!
+
+### Error Handling and Logging
+
+In general it is advisable to handle errors, in your components! There is no point of handling errors
+in your services (except if you need to normalize the error). Instead, handle them where the code is
+consumed and display appropriate error messages to the user within the markup (by using the elements
+given by the design of the application _e.g._ the `alerts` in Bootstrap).
+
+Further, you should not log using the console outside your development process (better: use the
+[`debugger` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger))!
+A logger should be a centralized service that can be at least appropriately configured for different
+environments (_e.g_ the `$log` service). We have to avoid cases such as having tons of debug logs
+in a productive environment because they can have negative impacts on performance.
 
 ### Bindings and Performance
 
@@ -123,11 +140,11 @@ Bindings in components are defined analogous to the previous scopes in directive
 }
 ```
 
-1. **One-Way-Binding:** Use them for values you don't want to change bottom-up. Even though you can propagate changes (they are passed by reference!) don't do it.
-2. **Two-Way-Binding:** Use them for values that need to be synchronised between components. Use them with caution since they will heavily affect  performance of the application!
-3. **Expression-Binding:** Will wrap the expression in a callback and you can call it in your component's controller. This is especially useful for passing callbacks. Be aware that you have to call the function with an object that passes its properties as parameters to the function (tracked by the name of the parameter): 
+  1. **One-Way-Binding:** Use them for values you don't want to change bottom-up. Even though you can propagate changes (they are passed by reference!) don't do it.
+  1. **Two-Way-Binding:** Use them for values that need to be synchronised between components. Use them with caution since they will heavily affect  performance of the application!
+  1. **Expression-Binding:** Will wrap the expression in a callback and you can call it in your component's controller. This is especially useful for passing callbacks. Be aware that you have to call the function with an object that passes its properties as parameters to the function (tracked by the name of the parameter):
 ```HTML
-<my-component expression-binding="$ctrl.selectValue(result)"></my-component>
+  <my-component expression-binding="$ctrl.selectValue(result)"></my-component>
 ```
 ```Javascript 
 class MyComponentController {
@@ -137,7 +154,7 @@ class MyComponentController {
    }
 }
 ```
-4. **String-Binding:** interpolated string value
+  1. **String-Binding:** interpolated string value
 
 #### One-Time-Binding
 
@@ -169,8 +186,8 @@ Discussion of general problems and approaches.
 Now and then one is forced to exchange data between the front- and the backend (_i.e._ Typo3 and Angular). If you have to do so, please stick to the following rules:
 
 1. **Use a namespace:**  Do not pollute the global scope with variables! Define all the configuration and data you have to provide to your Angular application in an object _e.g._ `applicationConfig` or `angularContext`.
-2. **Document it:** Please document all the variables and their purpose.
-3. **Define Constants:** Do not consume global variables in different components of your Angular application!! This will obfuscate the source as well as the consumers of the data and is heavily prone to unpredictable side-effects (_e.g._ if the variable has to be renamed).  Define a [Constant](https://docs.angularjs.org/api/ng/type/angular.Module#constant) during the bootstrapping of your application which can be injected into your components:
+1. **Document it:** Please document all the variables and their purpose.
+1. **Define Constants:** Do not consume global variables in different components of your Angular application!! This will obfuscate the source as well as the consumers of the data and is heavily prone to unpredictable side-effects (_e.g._ if the variable has to be renamed).  Define a [Constant](https://docs.angularjs.org/api/ng/type/angular.Module#constant) during the bootstrapping of your application which can be injected into your components:
 ```Javascript
 angular
     .module('yourmodule')
