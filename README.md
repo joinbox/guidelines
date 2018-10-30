@@ -1,11 +1,16 @@
 # Styleguides for Joinbox Developers
 
 
-##### For GIT Users
+##### For Git Users
 
-- [GIT Branching Model](styleguide/git.md)
+- [Git Branching Model](/styleguide/git/branching-model.md)
+- [Git Commit Messages](/styleguide/git/commit-messages.md)
 
 
-##### For javascript Developers
+##### For Javascript Developers
 
 - [Javascript Styleguide](/styleguide/javascript.md)
+
+##### For 3rd Party Developers
+
+- [3rd party Development](/styleguide/3rdparty.md)
