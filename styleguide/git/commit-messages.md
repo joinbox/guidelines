@@ -1,51 +1,38 @@
 # Commit Messages
 
-The commit message must follow the [Angular Commit Message Guidelines](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines).
+The commit messages must follow the rules in this document.
 
 As we build automated Change Logs for some projects please make sure you only use the specified types and formats.
-One must not use the angular scope. Add a understandable descriptor instead.
+The scope may be optionally set.
+Note: the software creating the versions may not bump the version if there is neither a feature nor a fix since the last release. Please read the documentation form the used software for further information.
 
-Below you find the important parts of the angular guidelines.
+
+The types are based on [Sparkbox's article](https://seesparkbox.com/foundry/semantic_commit_messages) about semantic commit messages.
+There is a [cli](https://github.com/fteem/git-semantic-commits) to use the commit messages with a simpler interface
 
 ## Commit Message Format
-Each commit message consists of a **header**, a **body** and a **footer**.  The header has a special
-format that includes a **type**, a **scope** and a **subject**:
 
 ```
-<type>(<scope>): <subject>
-<BLANK LINE>
-<body>
-<BLANK LINE>
-<footer>
-```
-
-The **header** is mandatory and the **scope** of the header is optional.
-
-Any line of the commit message cannot be longer 100 characters! This allows the message to be easier
-to read on GitHub as well as in various git tools.
-
-The footer should contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages/) if any.
-
-Samples: (even more [samples](https://github.com/angular/angular/commits/master))
+feat(scope): add hat wobble
+^--^  ^------------^
+|     |
+|     +-> Summary in present tense.
+|
++-------> Type: chore, docs, feat, fix, refactor, style, or test.
 
 ```
-docs(changelog): update changelog to beta.5
-```
-```
-fix(release): need to depend on latest rxjs and zone.js
-
-The version in our package.json gets copied to the one we publish, and users need the latest of these.
-```
+- feat: mandatory, one of the listed types from below.
+- summary: mandatory, summary about your changes in present tense.
+- scope: optional, describes the component the code is changing.
 
 ## Type
 
 Must be one of the following:
 
-* **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-* **ci**: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
-* **docs**: Documentation only changes
-* **feat**: A new feature
-* **fix**: A bug fix
-* **perf**: A code change that improves performance
-* **refactor**: A code change that neither fixes a bug nor adds a feature
-* **style**: Changes that do not affect the meaning of the code (whi
+- chore: A small change not affecting the functionality of the code.
+. docs: Changes or additions in the documentation.
+- feat: A feature.
+- fix: A bug fix.
+- refactor: A code change that neither fixes a bug nor adds a feature
+- style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- test: Adding missing tests or correcting existing test.
