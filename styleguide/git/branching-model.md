@@ -26,5 +26,5 @@ If a review on a pull request is requested, the corresponding branch must not be
 
 - A feature branch must be created for each issue based on the release branch. The name must follow the pattern `feature/iss-<Issue-Number>-<Short-Description-of-the-Issue>`. There may be multiple feature branches for one issue.
 - A release branch must be created for each milestone based on the current develop branch. The name must follow the pattern `release/<Milestone-Name>`
-A fix branch may be created for bugs or forgotten parts of a planed issue ( inside a milestone ) based on the release branch. The name must follow the pattern `fix/iss-<Issue-Number>-<Short-Description-of-the-Issue>`
+A fix branch may be created for bugs or forgotten parts of a planned issue (inside a milestone) based on the release branch. The name must follow the pattern `fix/iss-<Issue-Number>-<Short-Description-of-the-Issue>`
 - A hotfix branch may be created based on the current master branch, to fix a critical bug on the live system. Hofixes are not part of a planned release and will be released ASAP. The name must follow the pattern `hotfix/iss-<Issue-Number>-<Short-Description>`. Hotfixes may not be tested by the customer on the test system.
