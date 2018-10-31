@@ -2,7 +2,7 @@
 
 The commit messages must follow the rules in this document.
 
-As we build automated Change Logs for some projects please make sure you only use the specified types and formats.
+As we build automated change logs for some projects, you have to use the specified types and formats described hereafter.
 The scope may be optionally set.
 Note: the software creating the versions may not bump the version if there is neither a feature nor a fix since the last release. Please read the documentation form the used software for further information.
 
