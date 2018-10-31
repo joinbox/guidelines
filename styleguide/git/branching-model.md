@@ -22,7 +22,7 @@ Joinbox uses a more specific version of the git-flow branching model
 - after the release branch was merged into master and tagged with the correct version the release branch may be deleted.
 
 ## Naming
-Branches must not be updated after a review was requested, before changes are requested in the review. If the developer want's to track the progress, a pull request without a reviewer assigned may be opened.
+If a review on a pull request is requested, the corresponding branch must not be updated until changes were requested by the reviewer. If the developer wants to track the progress, a pull request without a reviewer assigned may be opened.
 
 - A feature branch must be created for each issue based on the release branch. The name must follow the pattern `feature/iss-<Issue-Number>-<Short-Description-of-the-Issue>`. There may be multiple feature branches for one issue.
 - A release branch must be created for each milestone based on the current develop branch. The name must follow the pattern `release/<Milestone-Name>`
