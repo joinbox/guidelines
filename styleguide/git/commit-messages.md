@@ -32,7 +32,7 @@ Must be one of the following:
 - chore: A task or a small change not affecting the functionality of the code
 - docs: Changes or additions in the documentation
 - feat: A feature
-- fix: A bug fix.
+- fix: A bug fix
 - refactor: A code change that neither fixes a bug nor adds a feature
 - style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
 - test: Adding missing tests or correcting existing test.
