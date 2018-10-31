@@ -9,7 +9,7 @@ Joinbox uses a more specific version of the git-flow branching model
 
 - the master branch can be released at any time, it is always 100% stable
 - The develop branch contains only code that works and is stable but is not yet tested by the client.
-- features and bug fixes are developed in feature branches until they are stable. the base branch for creating feature branches is the release branch where the issue is in or the master branch for hot fixes.
+- Features and bug fixes are developed in feature branches until they are stable. The branch, for basing feature branches on, is the release branch to which the task belongs to, or in the case of hot-fixes, the master branch.
 - feature branches may only be merged into the release branch if they are tested and work correctly.
 - feature branches will only be merged in to the according branch after at least one reviewer approved the pull request.
 - for each iteration (release cycle, milestone) a new release branch is created from develop branch when the development starts.
