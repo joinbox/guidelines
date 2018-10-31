@@ -14,11 +14,13 @@ There is a [cli](https://github.com/fteem/git-semantic-commits) to use the commi
 
 ```
 feat(scope): add hat wobble
-^--^  ^------------^
-|     |
-|     +-> Summary in present tense.
+^--^^-----^  ^------------^
+|   |        |
+|   |        +-> Summary in present tense.
+|   |
+|   +----------> Scope: describes the component.
 |
-+-------> Type: chore, docs, feat, fix, refactor, style, or test.
++--------------> Type: chore, docs, feat, fix, refactor, style, or test.
 
 ```
 - feat: mandatory, one of the listed types from below.

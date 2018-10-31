@@ -8,17 +8,17 @@ Joinbox uses a more specific version of the git-flow branching model
 ## General
 
 - the master branch can be released at any time, it is always 100% stable
-- The develop branch contains only code that works and is stable but is not yet tested by the client.
+- the release branch is published to a testing server for acceptance tests by the client. the client should receive the change log of the release branch
+- The develop branch contains only code that works, is stable and tested by the client
 - Features and bug fixes are developed in feature branches until they are stable. The branch, for basing feature branches on, is the release branch to which the task belongs to, or in the case of hot-fixes, the master branch.
 - feature branches may only be merged into the release branch if they are tested and work correctly.
 - feature branches will only be merged in to the according branch after at least one reviewer approved the pull request.
 - for each iteration (release cycle, milestone) a new release branch is created from develop branch when the development starts.
-- the release branch is published to a testing server for acceptance tests by the client. the client should receive the change log of the release branch
 - fixes for the release branch are merged into the release branch
 - the release branch may be merged into develop or another release branch if it is required
 - hot fixes are only created if they must be applied to the master branch for immediate release. they are based on the master branch
-- after a hot fix or release was released the master branch is merged into the develop branch as well as open release branches
-- releases must be planned in advance, there should not be more than one release branch at any time
+- after a hot fix or release was released, the releaser merges the master branch into the develop as well as open release branches.
+- releases should planned in advance, there should not be more than one release branch at any time
 - after the release branch was merged into master and tagged with the correct version the release branch may be deleted.
 
 ## Naming
