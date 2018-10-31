@@ -24,7 +24,36 @@ Joinbox uses a more specific version of the git-flow branching model.
 ## Naming
 If a review on a pull request is requested, the corresponding branch must not be updated until changes were requested by the reviewer. If the developer wants to track the progress, a pull request without a reviewer assigned may be opened.
 
-- A feature branch must be created for each issue based on the release branch. The name must follow the pattern `feature/iss-<Issue-Number>-<Short-Description-of-the-Issue>`. There may be multiple feature branches for one issue.
+- A feature branch must be created for each issue based on the release branch. The name must follow the pattern `feature/<Identifier>-<Issue-Number>-<Short-Description-of-the-Issue>`. There may be multiple feature branches for one issue.
 - A release branch must be created for each milestone based on the current develop branch. The name must follow the pattern `release/<Milestone-Name>`
-A fix branch may be created for bugs or forgotten parts of a planned issue (inside a milestone) based on the release branch. The name must follow the pattern `fix/iss-<Issue-Number>-<Short-Description-of-the-Issue>`
+A fix branch may be created for bugs or forgotten parts of a planned issue (inside a milestone) based on the release branch. The name must follow the pattern `fix/<Identifier>-<Issue-Number>-<Short-Description-of-the-Issue>`
 - A hotfix branch may be created based on the current master branch, to fix a critical bug on the live system. Hofixes are not part of a planned release and will be released ASAP. The name must follow the pattern `hotfix/iss-<Issue-Number>-<Short-Description>`. Hotfixes may not be tested by the customer on the test system.
+
+
+### Identifiers
+
+Identifiers:
+- Github Issue: iss
+- JIRA: task, story, (epic)
+- Generic: task, tsk
+
+
+Examples:
+
+Github
+```
+feature/iss-123-my-super-awesome-feature
+fix/iss-123-fixes-my-nasty-bug
+```
+
+JIRA
+```
+feature/task-123-my-super-awesome-feature
+fix/task-123-fixes-my-nasty-bug
+```
+
+Generic
+```
+feature/tsk-123-my-super-awesome-feature
+fix/tsk-123-fixes-my-nasty-bug
+```
