@@ -35,4 +35,9 @@ Must be one of the following:
 - fix: A bug fix
 - refactor: A code change that neither fixes a bug nor adds a feature
 - style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-- test: Adding missing tests or correcting existing test.
+- test: Adding missing tests or correcting existing test
+
+## Summary
+- use imperative, present tense: “change” not “changed” nor “changes”
+- don't capitalize first letter
+- no dot (.) at the end
