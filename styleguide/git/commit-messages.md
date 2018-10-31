@@ -29,7 +29,7 @@ feat(scope): add hat wobble
 
 Must be one of the following:
 
-- chore: A small change not affecting the functionality of the code.
+- chore: A task or a small change not affecting the functionality of the code
 . docs: Changes or additions in the documentation.
 - feat: A feature.
 - fix: A bug fix.
