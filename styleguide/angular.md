@@ -185,7 +185,7 @@ Discussion of general problems and approaches.
 ### Global Variables
 Now and then one is forced to exchange data between the front- and the backend (_i.e._ Typo3 and Angular). If you have to do so, please stick to the following rules:
 
-1. **Use a namespace:**  Do not pollute the global scope with variables! Define all the configuration and data you have to provide to your Angular application in an object _e.g._ `applicationConfig` or `angularContext`.
+1. **Use a namespace:**  Do not pollute the global scope with variables! Define all the configuration and data you have to provide to your Angular application in a Map _e.g._ `window.sbcGlobalConfig = new Map(Object.entries(/*...*/);`.
 1. **Document it:** Please document all the variables and their purpose.
 1. **Define Constants:** Do not consume global variables in different components of your Angular application!! This will obfuscate the source as well as the consumers of the data and is heavily prone to unpredictable side-effects (_e.g._ if the variable has to be renamed).  Define a [Constant](https://docs.angularjs.org/api/ng/type/angular.Module#constant) during the bootstrapping of your application which can be injected into your components:
 ```Javascript
