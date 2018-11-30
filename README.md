@@ -10,6 +10,7 @@
 ##### For Javascript Developers
 
 - [Javascript Styleguide](/styleguide/javascript.md)
+- [Angular Styleguide](/styleguide/angular.md)
 
 ##### For 3rd Party Developers
 
